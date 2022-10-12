@@ -411,7 +411,7 @@
                     <span class="member-role">Chargé de...</span>
                 </li>
                 <li class="member">
-                    <img class="member-pic" src="" alt="" >
+                    <img class="member-pic" src="project img\qiwu.png" alt="Qiwu" >
                     <div class="member-identification">
                         <span class="member-name">Qiwu Wen</span>
                         <span class="member-id">20230961</span>
@@ -581,7 +581,7 @@
 
                 <h3 class="subsection-title">Glossaire</h3>
                 <dl class="glossary">
-                    <dt class="glossary-term">Client</dt>
+                    <dt class="glossary-term">Client </dt>
                     <dd class="glossary-def">Definition toute personne pouvant utiliser l’outil Bineco (résident ou consommateur)</dd>
                     <dt class="glossary-term">Service d’assainissement</dt>
                     <dd class="glossary-def">services des rues urbaines fournis pour maintenir la sécurité de la santé publique</dd>
@@ -593,10 +593,10 @@
                     <dd class="glossary-def">Utilisé pour trier les déchets. Il existe trois types de déchets : recyclable, compostable et ordures</dd>
                     <dt class="glossary-term">Bac</dt>
                     <dd class="glossary-def">bac-poubelle numéroté lié à chaque résident, chaque résident a deux bacs pour chaque type de déchet.</dd>
-                    <dt class="glossary-term">Camion</dt>
-                    <dd class="glossary-def">véhicule utilisé pour transporter les bacs.</dd>
+                    <dt class="glossary-term">Ville</dt>
+                    <dd class="glossary-def">Organismes gouvernementaux traitant des problèmes liés à l'urbanisme.</dd>
                     <dt class="glossary-term">Liste des bacs</dt>
-                    <dd class="glossary-def">ne liste de bacs avec les noms des résidents en attente de récupérateur, partagée par plusieurs résidents à proximité</dd>
+                    <dd class="glossary-def">la liste de bacs avec les noms des résidents en attente de récupérateur, partagée par plusieurs résidents à proximité</dd>
                     <dt class="glossary-term">Actions écologiques</dt>
                     <dd class="glossary-def">actions associées à la protection environnementale</dd>
                     <dt class="glossary-term">Métrique écologique</dt>
@@ -702,9 +702,10 @@
                                 <br>
                             Relations   <ul>
                                             <li>Chaque acteur donne ou reçois de l'information </li>
-                                            <li>L'acteur Camion reçois une demande de cueillette (horaire)</li>
+                                            <li>L'acteur secondaire ville reçois une demande de cueillette (horaire)</li>
                                             <li>Transport des déchets vers un consommateur.</li>
                                              <li>Update bac vide pour le résident</li>
+                                             
 
                                         </ul>
                             </ul>
@@ -792,15 +793,15 @@
 
                         <div class="scenario-alt">
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
-                            <ol class="bare-list scenario-alt-steps">
+                            <ul class="bare-list scenario-alt-steps">
                                 <li>
-                                    Le client est déjà un résident.
-                                    <ol>
-                                        <li value="1">Le système affiche le client est déjà un résident.</li>
-                                        <li value="1">Le scénario se termine</li>
-                                    </ol>
+                                    4a. Le client est déjà un résident.
+                                    <ul>
+                                        <li value="1">4a.1. Le système affiche le client est déjà un résident.</li>
+                                        <li value="1">4a.2. Le scénario se termine</li>
+                                    </ul>
                                 </li>
-                            </ol>
+                            </ul>
                             
                         </div>
                     </div>
@@ -849,11 +850,10 @@
                             <li class="scenario-main-step">Le resident enregistre un bac</li>
                             <li class="scenario-main-step">Le système ajoute le bac dans la liste des bacs.</li>
                             <li class="scenario-main-step">La liste est pleine.</li>
-                            <li class="scenario-main-step">Le consommateur trouve les bacs vides des résidents qui ont enregistré les bacs</li>
-                            <li class="scenario-main-step">Le consommateur envoie un camion avec les bacs vides.</li>
-                            <li class="scenario-main-step">Le camion récupére les bacs pleins du résident.</li>
-                            <li class="scenario-main-step">Le camion dépose les bacs vides.</li>
-                            <li class="scenario-main-step">Le camion transporte les bacs pleins aux consommateurs.</li>
+                            <li class="scenario-main-step">Le consommateur envoie les numéros des bacs vides des résidents sur la liste</li>
+                            <li class="scenario-main-step">Le consommateur poste une demande d'un camion</li>
+                            <li class="scenario-main-step">La ville reçois les demande et offert des services d’assainissement</li>
+
                             
                             
 
@@ -861,10 +861,12 @@
 
                             <div class="scenario-alt">
                                 <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
-                                        <ol>
-                                            <li>La liste n’est pas pleine.</li>
-                                            <li>1 Les consommateurs attendent que la liste soit pleine avant de passer à l'étape suivante</li>
-                                        </ol>                  
+                                        <ul>
+                                            <li>3a. La liste n’est pas pleine.</li>
+                                            <ul>
+                                            <li>3a.1. Les consommateurs attendent que la liste soit pleine avant de passer à l'étape suivante</li>
+                                            </ul>
+                                        </ul>                  
                             </div>
                         </div>
                     </div>
@@ -914,7 +916,7 @@
                             <li class="scenario-main-step">Le consommateur élimine les déchets dans le bac</li>
                             <li class="scenario-main-step">Le consommateur met à jour le statut du bac.</li>
                             <li class="scenario-main-step">Le consommateur évalue la classification des déchets.</li>
-                            <li class="scenario-main-step">Le consommateur entre une note pour ce bac dans le système.</li>
+                            <li class="scenario-main-step">Le consommateur entre une note pour la classification de ce bac dans le système.</li>
                             <li class="scenario-main-step">Le système évalue les métriques écologiques des nouvelles données du résident et des enregistrements de métriques précédents.</li>
                             <li class="scenario-main-step">Le résident accède aux métriques écologiques</li>
                             
@@ -922,13 +924,13 @@
 
                         <div class="scenario-alt">
                             <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
-                            <ol>
-                                <li value="1">Le résident n’a pas des enregistrements de métriques précédents.</li>
-                             <ol>
-                                <li value="2">le système affiche seulement les nouvelles données.</li>
-                                <li value="3">Le résident accède aux métriques écologiques.</li>
-                             </ol>
-                            </ol>
+                            <ul>
+                                <li value="1">6a. Le résident n’a pas des enregistrements de métriques précédents.</li>
+                             <ul>
+                                <li value="2">6a.1 le système affiche seulement les nouvelles données.</li>
+                                <li value="3">6a.1 Le résident accède aux métriques écologiques.</li>
+                             </ul>
+                            </ul>
                             
                         </div>
                     </div>
