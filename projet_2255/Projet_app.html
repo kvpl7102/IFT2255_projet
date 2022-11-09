@@ -940,62 +940,73 @@
                 <h2 id="analysis" class="section-title">Analyse</h2>
                 <p>Notre analyse préliminaire nous a permis d'élucider les besoins et risques suivants...</p>
                 <div>
-                    <h3 class="subsection-title">Risques</h3>
+                    <h2 class="subsection-title">Risques</h2>
                     <ol class="risks">
                         <li>Protection des données personnelles des résidents.</li>
                         <li>Protection des données personnelles des consommateurs.</li>
                         <li>Risque de créer des back door dans les systèmes des consommateurs</li>
-                        <li>Lien consommateur/apli/résident doit être sécurisé </li>
-                        <li>Sécuriser le code pour éviter la manipulation du code source à des fins néfastes</li>
+                        <li>Délai de récupération des déchets à cause des conditions externes (neige, etc)</li>
                     </ol>
                 </div>
 
                 <div>
-                    <h3 class="subsection-title">Exigences non-fonctionnelles</h3>
+                    <h2 class="subsection-title">Besoins non-fonctionnelles</h2>
                     <ol class="nf-requirements">
-                        <li>Après le traitement des déchets, les consommateurs devraient mettre à jour sur le système
-                            l'historique du contenu des bacs des résidents et les métriques écologiques appropriées.</li>
+                        <li>Utilisabilité: Facile à utiliser et configurer pour tous les âges</li>
+                        <li>Comptabilité: Compatible avec les autres systèmes de la ville</li>
+                        <li>Portabilité: Bineco est supporté par tous les systèmes d'exploitation populaires</li>
+                        <li>Fiabilité: 90% des consommateurs suggérés au résidents doivent être accessibles </li>
+                        <li>Performance: Délai de la mise à jour de l'affichage du niveau de remplissage de chaque bac &lt; 5 secondes </li>
+                        <li>L'application doit être intuitif pour faciliter l'opération des utilisateurs: 
+                            Les utilisateurs peuvent revenir au menu principal en tout temps sans quitter l'application</li>
                         <li>Le mécanisme de recherche des consommateurs va suggérer les locations les plus proches
                             de l'adresse actuelle du résident enregistrée dans le système</li>
-                        <li>Après l'enregistrement d'un nouveau bac, son historique des déchets et ses métriques écologiques 
-                            restent le même.</li>
+                        <li>Un code QR d'un bac ne peut pas être registrée pour deux addresses différentes </li>
                         <li>Après la récupération d'un bac, son niveau de remplissage devrait être mise à vide.</li>
-                        <li>Signale les changements dans métriques.</li>
+                        <li>Le système doit être capable de traiter 100000 utilisateurs simultanément avec un temps de délai &lt; 1 seconde par utilisateur</li>
                     </ol>
                 </div>
 
                 <div>
-                    <h3 class="subsection-title">Ressources nécessaires</h3>
+                    <h2 class="subsection-title">Ressources nécessaires</h2>
                     <p>
-                        Partie à informatiser:
+                        Parties à informatiser:
                         <ol>
-                            <li>Niveau résidentiel (résidents, consommateurs)</li>
-                            <li>Niveau municipal (ville)</li>
-                            <li>Grand volume de l'information, contrôle dé taillée => Traitement en batch</li>   
+                            <li>Gestion des résidents</li>
+                            <li>Gestion des consommateurs</li>
+                            <li>Gestion des bacs (compostage, recyclage, ordure)</li>   
                         </ol>   
                     
-                        Ressources nécessaires:
+                        Matériels nécessaires:
                         <ol>
-                            <li>Sauvegardes sur des disques durs externes.</li>
-                            <li>Fichier CSV pour informations des résidents et des consommateurs.</li>
+                            <li>Disponibilité d'un cellulaire / ordinateur avec l'accès à l'Internet</li>
+                            <li>Bac de compostage, reclyclage, et ordure</li>
+                            <li>Des camions pour recueillir des poubelles</li>
                         </ol>
                     </p>
                 </div>
 
                 <div>
-                    <h3 class="subsection-title">Contraintes</h3>
+                    <h2 class="subsection-title">Contraintes</h2>
                     <p>
-                        <ol>
+                        <h1>Physiques</h1>
+                        <ul>
+                            <li>Mémoire de stockage allant jusqu'à 100TB permettant au serveur municipale 
+                                de stocker les informations des utilisateurs, les poubelles, les plages d'horaire, etc </li>
+                            <li>Mémoire de stokage allant jusqu'à 5MB permettant à chaque résident de stocker les changements de poubelles</li>
+                            <li>3 bacs pour chaque résident (compostage, reclyclage, ordure) avec chaque bac ayant un code QR pour identification</li> 
+                        </ul>
+                        
+                        <h1>Conceptuelles</h1>
+                        <ul>
                             <li>Langage de programmation: Java</li>
-                            <li>Logiciel externe: aucun pour le moment</li>
-                            <li>Interaction: en ligne de commande</li>
-                            <li>Format de données: base de données</li>
-                        </ol>
+                            <li>Triage des poubelles (compostage, reclyclage, ordure)</li>
+                        </ul>
                     </p>
                 </div>
 
                 <div>
-                    <h3 class="subsection-title">Propositions</h3>
+                    <h2 class="subsection-title">Propositions</h2>
 
                     <p>
                         
