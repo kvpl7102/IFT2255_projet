@@ -416,7 +416,7 @@
                         <span class="member-id">20230961</span>
                     </div> 
                     <a href="mailto:qiwu.wen@umontreal.ca">qiwu.wen@umontreal.ca</a>
-                    <span class="member-role">Chargé de...</span>
+                    <span class="member-role">Chargé de dessin</span>
                 </li>
                 <li class="member">
                     <img class="member-pic" src="project img\Vi.png" alt="Le Kinh Vi" >
@@ -580,6 +580,8 @@
 
                 <h3 class="subsection-title">Glossaire</h3>
                 <dl class="glossary">
+                    <dt class="glossary-term">Bineco </dt>
+                    <dd class="glossary-def">Un système qui utilise des capteurs et une interaction directe avec différents types d'utilisateurs pour aider les gens à gérer les déchets et à optimiser l'urbanisme</dd>
                     <dt class="glossary-term">Client </dt>
                     <dd class="glossary-def">Definition toute personne pouvant utiliser l’outil Bineco (résident ou consommateur)</dd>
                     <dt class="glossary-term">Service d’assainissement</dt>
@@ -592,12 +594,16 @@
                     <dd class="glossary-def">Utilisé pour trier les déchets. Il existe trois types de déchets : recyclable, compostable et ordures</dd>
                     <dt class="glossary-term">Bac</dt>
                     <dd class="glossary-def">bac-poubelle numéroté lié à chaque résident, chaque résident a deux bacs pour chaque type de déchet.</dd>
+                    <dt class="glossary-term">Capteur</dt>
+                    <dd class="glossary-def">Appareil sur le bac pour suivre en temps réel les données des déchets du bac</dd>
                     <dt class="glossary-term">Ville</dt>
                     <dd class="glossary-def">Organismes gouvernementaux traitant des problèmes liés à l'urbanisme.</dd>
                     <dt class="glossary-term">Liste des bacs</dt>
                     <dd class="glossary-def">la liste de bacs avec les noms des résidents en attente de récupérateur, partagée par plusieurs résidents à proximité</dd>
                     <dt class="glossary-term">Actions écologiques</dt>
                     <dd class="glossary-def">actions associées à la protection environnementale</dd>
+                    <dt class="glossary-term">Activités</dt>
+                    <dd class="glossary-def">Activités écologiques de classement des bacs</dd>
                     <dt class="glossary-term">Métrique écologique</dt>
                     <dd class="glossary-def">évaluations utilisées par les consommateurs pour évaluer les actions écologiques du résident</dd>
                     <dt class="glossary-term">Numéro de consommateur</dt>
@@ -606,6 +612,8 @@
                     <dd class="glossary-def">un numéro attribué à chaque résident.</dd>
                     <dt class="glossary-term">Numéro de bac</dt>
                     <dd class="glossary-def">Le numéro utilisé pour distinguer deux bacs de même type de déchet (1 ou 2).</dd>
+                    <dt class="glossary-term">Signaler un problème </dt>
+                    <dd class="glossary-def"> Possibilité de contacter directement la ville pour obtenir de l'aide</dd>
                     <dt class="glossary-term">Informations personnelles</dt>
                     <dd class="glossary-def">informations qui contient le nom, l'adresse, le numéro de téléphone et l'adresse e-mail du client</dd>
                     <dt class="glossary-term">enregistrer un bac</dt>
@@ -766,14 +774,14 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Préconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">Le client a déjà un compte</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">Le compte est de type "Résident"</li>
                             </ul>
                         </div>
                         
@@ -837,7 +845,7 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">le bac sera récupéré par le camion et le livré vers le consommateur</li>
                             </ul>
                         </div>
                         
@@ -899,13 +907,14 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">mise à jour métrique écologique du résident</li>
+                                <li class="dash">Le résident doit être condamné à une amende si le métier est inférieur à la norme</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">Notes additionnelles et hypothèses</p>
+                            <p class="cu-notes">La norme est définie par la ville</p>
                         </div>
                     </div>
                     <div class="scenario-main">
@@ -918,6 +927,7 @@
                             <li class="scenario-main-step">Le consommateur entre une note pour la classification de ce bac dans le système.</li>
                             <li class="scenario-main-step">Le système évalue les métriques écologiques des nouvelles données du résident et des enregistrements de métriques précédents.</li>
                             <li class="scenario-main-step">Le résident accède aux métriques écologiques</li>
+                            
                             
                         </ol>
 
