@@ -6,6 +6,7 @@ public class App {
 
     UserController uc = new UserController();
     BinController bc = new BinController();
+    MetricController mc = new MetricController();
     Resident loggedResident;
     boolean exit = false;
 
@@ -18,7 +19,7 @@ public class App {
 
     public void displayMenu() {
         displayHeader();
-        // printLoginPage();
+        // displayLoginPage();
         bc.setResident(loggedResident);
 
         while (!exit) {
@@ -59,6 +60,10 @@ public class App {
                 } else {
                     loggedResident.printBins();
                 }
+                break;
+
+            case 4:
+                mc.showMetrics();
                 break;
 
             case 6:
