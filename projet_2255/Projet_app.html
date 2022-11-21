@@ -712,17 +712,18 @@
                     </a>
                     <p class="use-case-notes">
                         <em>
-                            
                             <ul>
-                                Acteurs: <UL>
-                                            <li> Le resident est le seul acteur.</li>
-                                        </UL>
-                             <br>
-                                Relation :<ul>
-                                            <li> apli/résident, pour but d'inscription.</li>
-                                        </ul>
-                               
-                            </ul>
+                            Acteurs: <UL>
+                                        <li> Le resident(principal) et la ville(secondaire)</li>
+                                    </UL>
+                         <br>
+                            Relation :<ul>
+                                        <li> apli/résident, mais pour s'inscrire, la confirmation manuelle requise par la ville avant une inscription réussie.</li>
+                                    </ul>
+                           
+                        </ul>
+                            
+                            
                         </em>
                     </p>
                 </div>
@@ -991,7 +992,9 @@
                             <li class="scenario-main-step">Le système demande le nom, l’adress, le numéro téléphone et l’adresse couriel du client.</li>
                             <li class="scenario-main-step">Le système vérifie si le client est déjà enregistré en tant que résident.</li>
                             <li class="scenario-main-step">Le système entre les informations personnelles du client.</li>
-                            <li class="scenario-main-step">Le système entre les informations personnelles du client.</li>
+                            <li class="scenario-main-step">Le système atteindre la vérification de la ville</li>
+                            <li class="scenario-main-step">La ville confirme la validité des données personnelles</li>
+                            <li class="scenario-main-step">Le client devient un résident avec succès</li>
                         </ol>
 
                         <div class="scenario-alt">
@@ -1002,6 +1005,14 @@
                                     <ul>
                                         <li value="1">4a.1. Le système affiche le client est déjà un résident.</li>
                                         <li value="1">4a.2. Le scénario se termine</li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    7a. Problème avec la validité
+                                    <ul>
+                                        <li value="1">7a.1. La ville refuse la demande</li>
+                                        <li value="1">7a.2. Le scénario se termine</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -1071,7 +1082,24 @@
                                             <ul>
                                             <li>3a.1. Les consommateurs attendent que la liste soit pleine avant de passer à l'étape suivante</li>
                                             </ul>
-                                        </ul>                  
+                                        </ul>    
+                                        <ul>
+                                            <li>7a. Il n'y a plus de camion disponible</li>
+                                            <ul>
+                                            <li>7a.1 la ville génére un nouveau horaire</li>
+                                            <li>7a.2 la ville l'envoie au résident </li>
+                                            <li>7a.3 le scénario continue à l'étape 7 </li>
+                                            </ul>
+                                        </ul>
+                                        
+                                        <ul>
+                                            <li>7a.3a. Le résident refuse le nouveau horaire</li>
+                                            <ul>
+                                            <li>7a.3a1. le système demande au résident de choisir un nouveau temps</li>
+                                            <li>7a.3a2. le scénario continue à l'étape 7a.2</li>
+                                            
+                                            </ul>
+                                        </ul> 
                             </div>
                         </div>
                     </div>
