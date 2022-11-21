@@ -416,10 +416,10 @@
                         <span class="member-id">20230961</span>
                     </div> 
                     <a href="mailto:qiwu.wen@umontreal.ca">qiwu.wen@umontreal.ca</a>
-                    <span class="member-role">Chargé de dessin</span>
+                    <span class="member-role">Chargé de...</span>
                 </li>
                 <li class="member">
-                    <img class="member-pic" src="project img\Vi.jpg" alt="Vi" >
+                    <img class="member-pic" src="project img\Vi.png" alt="Le Kinh Vi" >
                     <div class="member-identification">
                         <span class="member-name">Le Kinh Vi PHUNG</span>
                         <span class="member-id">20178538</span>
@@ -580,8 +580,6 @@
 
                 <h3 class="subsection-title">Glossaire</h3>
                 <dl class="glossary">
-                    <dt class="glossary-term">Bineco </dt>
-                    <dd class="glossary-def">Un système qui utilise des capteurs et une interaction directe avec différents types d'utilisateurs pour aider les gens à gérer les déchets et à optimiser l'urbanisme</dd>
                     <dt class="glossary-term">Client </dt>
                     <dd class="glossary-def">Definition toute personne pouvant utiliser l’outil Bineco (résident ou consommateur)</dd>
                     <dt class="glossary-term">Service d’assainissement</dt>
@@ -594,16 +592,12 @@
                     <dd class="glossary-def">Utilisé pour trier les déchets. Il existe trois types de déchets : recyclable, compostable et ordures</dd>
                     <dt class="glossary-term">Bac</dt>
                     <dd class="glossary-def">bac-poubelle numéroté lié à chaque résident, chaque résident a deux bacs pour chaque type de déchet.</dd>
-                    <dt class="glossary-term">Capteur</dt>
-                    <dd class="glossary-def">Appareil sur le bac pour suivre en temps réel les données des déchets du bac</dd>
                     <dt class="glossary-term">Ville</dt>
                     <dd class="glossary-def">Organismes gouvernementaux traitant des problèmes liés à l'urbanisme.</dd>
                     <dt class="glossary-term">Liste des bacs</dt>
                     <dd class="glossary-def">la liste de bacs avec les noms des résidents en attente de récupérateur, partagée par plusieurs résidents à proximité</dd>
                     <dt class="glossary-term">Actions écologiques</dt>
                     <dd class="glossary-def">actions associées à la protection environnementale</dd>
-                    <dt class="glossary-term">Activités</dt>
-                    <dd class="glossary-def">Activités écologiques de classement des bacs</dd>
                     <dt class="glossary-term">Métrique écologique</dt>
                     <dd class="glossary-def">évaluations utilisées par les consommateurs pour évaluer les actions écologiques du résident</dd>
                     <dt class="glossary-term">Numéro de consommateur</dt>
@@ -612,8 +606,6 @@
                     <dd class="glossary-def">un numéro attribué à chaque résident.</dd>
                     <dt class="glossary-term">Numéro de bac</dt>
                     <dd class="glossary-def">Le numéro utilisé pour distinguer deux bacs de même type de déchet (1 ou 2).</dd>
-                    <dt class="glossary-term">Signaler un problème </dt>
-                    <dd class="glossary-def"> Possibilité de contacter directement la ville pour obtenir de l'aide</dd>
                     <dt class="glossary-term">Informations personnelles</dt>
                     <dd class="glossary-def">informations qui contient le nom, l'adresse, le numéro de téléphone et l'adresse e-mail du client</dd>
                     <dt class="glossary-term">enregistrer un bac</dt>
@@ -748,91 +740,49 @@
                         </em>
                     </p>
                 </div>
-                
-
-                <h3 class="subsection-title">Scénarios</h3>
-
-                <div class="scenario" id="cu-0">
-                    <div class="scenario-meta">
-                        <h4 class="cu-name">
-                            <strong>CU:</strong> Cas d'utilisation principal
-                        </h4>
-                        <p class="cu-goal">
-                            <strong>Objectif:</strong> Un utilisateur veut utiliser l'outil bineco
-                        </p>
+                <h2 id="model" class="section-title">Modélisation du comportement</h2>
+//SP test
+                <h3 class="subsection-title">Diagramme de séquence Afficher l'état du bac de recyclage</h3>
+                <div class="use-case">
+                    <a class="use-case-link" href="lien-vers-fichier.vpp">
+                        <img class="use-case-img" src="project img\sp_getBin.PNG" alt="">
+                    </a>
+                    <p class="use-case-notes">
                         
-                        <hr>
-
-                        <div class="cu-part">
-                            <h5 class="cu-part-title">Acteurs</h5>
-                            <ul class="bare-list cu-actors">
-                                <li class="cu-actor">Résident (Principal)</li>
-                                <li class="cu-actor">Consommateur (Principal)</li>
-                                <li class="cu-actor">Client (Principal)</li>
-                                <li class="cu-actor">Capteur (Secondaire)</li>
-                                <li class="cu-actor">Ville (Secondaire)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="cu-part">
-                            <h5 class="cu-part-title">Préconditions</h5>
-                            <ul class="bare-list cu-conditions">
-                                <li class="dash">L'utilisateur a un compte</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="cu-part">
-                            <h5 class="cu-part-title">Postconditions</h5>
-                            <ul class="bare-list cu-conditions">
-                                <li class="dash">Les demandes et les opérations de l'utilisateur sont effectuées par le système</li>
-                                <li class="dash">Les données stockées sont enregistrées</li>
-                                <li class="dash">Les informations demandées par l'utilisateur sont bien affichées</li>
-                            </ul>
-                        </div>
-                        
-                        
-                    </div>
-                    <div class="scenario-main">
-                        <h5 class="scenario-main-title">Scénario principal</h5>
-                        <ol class="scenario-main-steps">
-                            <li class="scenario-main-step">Selon le type de compte, le système affiche différentes options</li>
-                            <li class="scenario-main-step">L'utilisateur sélectionne l’option requise en fonction de ses besoins</li>
-                            <li class="scenario-main-step">Selon le type d'option choisi, le système affiche les données stockées</li>
-                            <li class="scenario-main-step">L'utilisateur entre les données</li>
-                            <li class="scenario-main-step">Le système reçoit les données et les effectue le traitement de ces données</li>
-                            <li class="scenario-main-step">Le système affiche le resultat du traitement</li>
-                            <li class="scenario-main-step">Le système se termine</li>
-                        </ol>
-
-                        <div class="scenario-alt">
-                            <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
-                            <ul class="bare-list scenario-alt-steps">
-                                <li>
-                                    3a. L'option est lié à un acteur secondaire(capteur ou ville)
-                                    <ul>
-                                        <li value="1">3a.1. Le système contacte la ville ou le capteur du bac</li>
-                                        <li value="1">3a.2. La requête est envoyée à la ville ou le capteur</li>
-                                        <li value="1">3a.3. La ville ou le capteur confirme la validation de la requête</li>
-                                        <li value="1">3a.4. La ville ou le capteur envoie les données au système</li>
-                                        <li value="1">3a.5. Le scenario continue à l'étape 4</li>
- 
-                                    </ul>
-                                </li>
-                                <li>
-                                    3a.3a. L'opération est la demande d'un camion à la ville
-                                    <ul>
-                                        <li value="1">3a.3a.1. La ville vérifie la disponibilité des camions</li>
-                                        <li value="1">3a.3a.2  La ville génére l'horaire de récupération</li>
-                                        <li value="1">3a.3a.3 Le scenario continue à l'étape 4</li>
-        
-                                    </ul>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </div>
+                    </p>
                 </div>
 
+                <h3 class="subsection-title">Diagramme de séquence Demander un nouveau bac à MunicipInfo</h3>
+                <div class="use-case">
+                    <a class="use-case-link" href="lien-vers-fichier.vpp">
+                        <img class="use-case-img" src="project img\sp_newBin.PNG "alt="">
+                    </a>
+                    <p class="use-case-notes">
+                        
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Diagramme de séquence Notifier les résidents d'un besoin de plastique</h3>
+                <div class="use-case">
+                    <a class="use-case-link" href="lien-vers-fichier.vpp">
+                        <img class="use-case-img" src="project img\sp_consumer_message.PNG" alt="">
+                    </a>
+                    <p class="use-case-notes">
+                       
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Diagramme de séquenceTrouver un consommateur et noter une activité</h3>
+                <div class="use-case">
+                    <a class="use-case-link" href="lien-vers-fichier.vpp">
+                        <img class="use-case-img" src="project img\sp_note.PNG" alt="">
+                    </a>
+                    <p class="use-case-notes">
+                      
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Scénarios</h3>
 
                 <div class="scenario" id="cu-1">
                     <div class="scenario-meta">
@@ -856,14 +806,14 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Préconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Le client est connecté</li>
+                                <li class="dash">Aucun</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Le compte est de type "Résident"</li>
+                                <li class="dash">Aucun</li>
                             </ul>
                         </div>
                         
@@ -921,14 +871,13 @@
                             <ul class="bare-list cu-conditions">
                                 <li class="dash">Le client est enregistré en tant que résident</li>
                                 <li class="dash">La ville a au moins un camion disponible</li>
-                                <li class="dash">Le résident est connecté</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">le bac sera récupéré par le camion et le livré vers le consommateur</li>
+                                <li class="dash">Aucun</li>
                             </ul>
                         </div>
                         
@@ -939,11 +888,10 @@
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le resident enregistre un bac</li>
                             <li class="scenario-main-step">Le système ajoute le bac dans la liste des bacs.</li>
-                            <li class="scenario-main-step">Les bacs sont prêts à être récupérés</li>
+                            <li class="scenario-main-step">La liste est pleine.</li>
                             <li class="scenario-main-step">Le consommateur envoie les numéros des bacs vides des résidents sur la liste</li>
                             <li class="scenario-main-step">Le consommateur poste une demande d'un camion</li>
                             <li class="scenario-main-step">La ville reçois les demande et offert des services d’assainissement</li>
-                            <li class="scenario-main-step">La ville confirme la demande et envoie un camion</li>
 
                             
                             
@@ -991,14 +939,13 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">mise à jour métrique écologique du résident</li>
-                                <li class="dash">Le résident doit être condamné à une amende si le métier est inférieur à la norme</li>
+                                <li class="dash">Aucun</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">La norme est définie par la ville</p>
+                            <p class="cu-notes">Notes additionnelles et hypothèses</p>
                         </div>
                     </div>
                     <div class="scenario-main">
@@ -1011,7 +958,6 @@
                             <li class="scenario-main-step">Le consommateur entre une note pour la classification de ce bac dans le système.</li>
                             <li class="scenario-main-step">Le système évalue les métriques écologiques des nouvelles données du résident et des enregistrements de métriques précédents.</li>
                             <li class="scenario-main-step">Le résident accède aux métriques écologiques</li>
-                            
                             
                         </ol>
 
@@ -1122,21 +1068,40 @@
             </section>
 
             <section class="main-section">
-                <h2 id="prototype" class="section-title">DIAGRAMMES</h2>
+                <h2 id="prototype" class="section-title">Prototype</h2>
 
                 <p>
                     
-                        Ci-dessous ce sont des vues des diagrammes de notre projet. 
+                        Ci-dessous nous illustrons notre prototype en présentant 5 vues de l'application. 
                     
                 </p>
                 <ul class="bare-list previews">
-                    
                     <li class="preview">
-                        <h4 style="font-size: 1.2em; margin-bottom: 6px">Diagramme de classe</h4> 
-                        <img class="preview-img" src="project img\diagram_classes.png" alt="">
+                        <h4 style="font-size: 1.2em; margin-bottom: 6px">Menu principal</h4> 
+                        <img class="preview-img" src="project img\img1" alt="">
+                        Le menu principal est affiché au démarage de l'application. 
                     </li>
-                    
-                </ul>
+                    <li class="preview">
+                        <h4 style="font-size: 1.2em; margin-bottom: 6px">Infos de mon compte</h4> 
+                        <img class="preview-img" src="project img\img2" alt="">
+                        Cette page nous présente la section mon compte où se trouve nos informations personnelles.
+                    </li>
+                    <li class="preview">
+                        <h4 style="font-size: 1.2em; margin-bottom: 6px"> Horaire de ré cupération des déchets </h4> 
+                        <img class="preview-img" src="project img\img3" alt="">
+                        Une vue de l'horaire hebdomadaire pour la récolte de différents bacs.
+                    </li>
+                    <li class="preview">
+                        <h4 style="font-size: 1.2em; margin-bottom: 6px">Menu des bacs</h4> 
+                        <img class="preview-img" src="project img\img4" alt="">
+                        Menu de sélections de bac pour l'affichage des métriques.
+                    </li>
+                    <li class="preview">
+                        <h4 style="font-size: 1.2em; margin-bottom: 6px">Etat d'un bac</h4> 
+                        <img class="preview-img" src="project img\img5" alt="">
+                        Vue de l'état de mes bacs, qui montre vide/plein et la composition des déchets.
+                    </li>
+                </li>
             </section>
         </div>
     </main>
