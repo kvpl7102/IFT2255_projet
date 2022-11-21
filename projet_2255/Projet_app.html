@@ -661,6 +661,34 @@
             <section class="main-section">
                 <h2 id="model" class="section-title">Modélisation du domaine</h2>
 
+                <h3 class="subsection-title">Cas d'utilisation: CU principal</h3>
+                <div class="use-case">
+                    <a class="use-case-link" href="lien-vers-fichier.vpp">
+                        <img class="use-case-img" src="project img\CUprincipal.PNG" alt="">
+                    </a>
+                    <p class="use-case-notes">
+                        <em>
+                            
+                            <ul>
+                                Acteurs: <UL>
+                                            <li> Le résident et le consommateur. Ils sont en même temps les clients(principal)</li>
+                                            <li> Capteur et ville(secondaire)</li>
+                                        </UL>
+                             <br>
+                                Relation :<ul>
+                                            <li> les clients font les demandes</li>
+                                            <li> le capteur et la ville reçoivent les demandes et envoient les informations demandées</li>
+                                            <li> les clients voyent le resultat de leurs demandes</li>
+                                            <li> les clients peuvent effectuer plusieurs demandes en même temps</li>
+                                            <li> les clients peuvent consulter la liste des bacs et la liste des consommateurs pour faire les décisions</li>
+                                        </ul>
+                               
+                            </ul>
+                        </em>
+                    </p>
+                </div>
+
+
                 <h3 class="subsection-title">Cas d'utilisation: Devenir résident</h3>
                 <div class="use-case">
                     <a class="use-case-link" href="lien-vers-fichier.vpp">
@@ -791,9 +819,118 @@
                     <p class="use-case-notes">
                       
                     </p>
+
+                    
+                </div>
+                <div>
+
+                    <h4 style="font-size: 1.2em; margin-bottom: 6px">Diagramme de classe</h4> 
+                    <img class="preview-img" src="project img\diagram_classes.png" alt="">
+                </li>
+
+                <li class="preview">
+                    <h4 style="font-size: 1.2em; margin-bottom: 6px">Diagramme d'activités</h4> 
+                    <li> Diagramme d'activités principal
+                    <img class="preview-img" src="project img\DAprincipal.png" alt=""\>
+                    </li>
+                    <li>Diagramme d'activités de transport
+                        <img class="preview-img" src="project img\DAtransport.png" alt=""\>
+                        </li>
+                        <li>Diagramme d'activités de modification
+                            <img class="preview-img" src="project img\DAmodifier.png" alt=""\>
+                            </li>
+                            <li> Diagramme d'activités d'horaire
+                                <img class="preview-img" src="project img\DAhoraire.png" alt=""\>
+                                </li>
+                            <li> Diagramme d'activités d'état
+                                <img class="preview-img" src="project img\DAetat.png" alt=""\>
+                                </li>
+                </li>
                 </div>
 
                 <h3 class="subsection-title">Scénarios</h3>
+
+                <div class="scenario" id="cu-0">
+                    <div class="scenario-meta">
+                        <h4 class="cu-name">
+                            <strong>CU:</strong> Cas d'utilisation principal
+                        </h4>
+                        <p class="cu-goal">
+                            <strong>Objectif:</strong> Un utilisateur veut utiliser l'outil bineco
+                        </p>
+                        
+                        <hr>
+
+                        <div class="cu-part">
+                            <h5 class="cu-part-title">Acteurs</h5>
+                            <ul class="bare-list cu-actors">
+                                <li class="cu-actor">Résident (Principal)</li>
+                                <li class="cu-actor">Consommateur (Principal)</li>
+                                <li class="cu-actor">Client (Principal)</li>
+                                <li class="cu-actor">Capteur (Secondaire)</li>
+                                <li class="cu-actor">Ville (Secondaire)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cu-part">
+                            <h5 class="cu-part-title">Préconditions</h5>
+                            <ul class="bare-list cu-conditions">
+                                <li class="dash">L'utilisateur a un compte</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cu-part">
+                            <h5 class="cu-part-title">Postconditions</h5>
+                            <ul class="bare-list cu-conditions">
+                                <li class="dash">Les demandes et les opérations de l'utilisateur sont effectuées par le système</li>
+                                <li class="dash">Les données stockées sont enregistrées</li>
+                                <li class="dash">Les informations demandées par l'utilisateur sont bien affichées</li>
+                            </ul>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="scenario-main">
+                        <h5 class="scenario-main-title">Scénario principal</h5>
+                        <ol class="scenario-main-steps">
+                            <li class="scenario-main-step">Selon le type de compte, le système affiche différentes options</li>
+                            <li class="scenario-main-step">L'utilisateur sélectionne l’option requise en fonction de ses besoins</li>
+                            <li class="scenario-main-step">Selon le type d'option choisi, le système affiche les données stockées</li>
+                            <li class="scenario-main-step">L'utilisateur entre les données</li>
+                            <li class="scenario-main-step">Le système reçoit les données et les effectue le traitement de ces données</li>
+                            <li class="scenario-main-step">Le système affiche le resultat du traitement</li>
+                            <li class="scenario-main-step">Le système se termine</li>
+                        </ol>
+
+                        <div class="scenario-alt">
+                            <h5 class="scenario-alt-title">Scénarios alternatifs</h5>
+                            <ul class="bare-list scenario-alt-steps">
+                                <li>
+                                    3a. L'option est lié à un acteur secondaire(capteur ou ville)
+                                    <ul>
+                                        <li value="1">3a.1. Le système contacte la ville ou le capteur du bac</li>
+                                        <li value="1">3a.2. La requête est envoyée à la ville ou le capteur</li>
+                                        <li value="1">3a.3. La ville ou le capteur confirme la validation de la requête</li>
+                                        <li value="1">3a.4. La ville ou le capteur envoie les données au système</li>
+                                        <li value="1">3a.5. Le scenario continue à l'étape 4</li>
+ 
+                                    </ul>
+                                </li>
+                                <li>
+                                    3a.3a. L'opération est la demande d'un camion à la ville
+                                    <ul>
+                                        <li value="1">3a.3a.1. La ville vérifie la disponibilité des camions</li>
+                                        <li value="1">3a.3a.2  La ville génére l'horaire de récupération</li>
+                                        <li value="1">3a.3a.3 Le scenario continue à l'étape 4</li>
+        
+                                    </ul>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="scenario" id="cu-1">
                     <div class="scenario-meta">
@@ -817,14 +954,14 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Préconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">Le client est connecté</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">Le compte est de type "Résident"</li>
                             </ul>
                         </div>
                         
@@ -882,13 +1019,14 @@
                             <ul class="bare-list cu-conditions">
                                 <li class="dash">Le client est enregistré en tant que résident</li>
                                 <li class="dash">La ville a au moins un camion disponible</li>
+                                <li class="dash">Le résident est connecté</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">le bac sera récupéré par le camion et le livré vers le consommateur</li>
                             </ul>
                         </div>
                         
@@ -899,10 +1037,11 @@
                         <ol class="scenario-main-steps">
                             <li class="scenario-main-step">Le resident enregistre un bac</li>
                             <li class="scenario-main-step">Le système ajoute le bac dans la liste des bacs.</li>
-                            <li class="scenario-main-step">La liste est pleine.</li>
+                            <li class="scenario-main-step">Les bacs sont prêts à être récupérés</li>
                             <li class="scenario-main-step">Le consommateur envoie les numéros des bacs vides des résidents sur la liste</li>
                             <li class="scenario-main-step">Le consommateur poste une demande d'un camion</li>
                             <li class="scenario-main-step">La ville reçois les demande et offert des services d’assainissement</li>
+                            <li class="scenario-main-step">La ville confirme la demande et envoie un camion</li>
 
                             
                             
@@ -950,13 +1089,14 @@
                         <div class="cu-part">
                             <h5 class="cu-part-title">Postconditions</h5>
                             <ul class="bare-list cu-conditions">
-                                <li class="dash">Aucun</li>
+                                <li class="dash">mise à jour métrique écologique du résident</li>
+                                <li class="dash">Le résident doit être condamné à une amende si le métier est inférieur à la norme</li>
                             </ul>
                         </div>
                         
                         <div class="cu-part cu-part--notes">
                             <h5 class="cu-part-title">Notes</h5>
-                            <p class="cu-notes">Notes additionnelles et hypothèses</p>
+                            <p class="cu-notes">La norme est définie par la ville</p>
                         </div>
                     </div>
                     <div class="scenario-main">
@@ -969,6 +1109,7 @@
                             <li class="scenario-main-step">Le consommateur entre une note pour la classification de ce bac dans le système.</li>
                             <li class="scenario-main-step">Le système évalue les métriques écologiques des nouvelles données du résident et des enregistrements de métriques précédents.</li>
                             <li class="scenario-main-step">Le résident accède aux métriques écologiques</li>
+                            
                             
                         </ol>
 
