@@ -1,51 +1,62 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BinController implements Controller {
 
-    Resident resident;
+    private ArrayList<Bin> bins = new ArrayList<Bin>();
 
-    public void setResident(User resident) {
-        this.resident = (Resident) resident;
+    public ArrayList<Bin> getBins() {
+        return bins;
     }
 
-    public void addNewBin() {
+    public void removeBin(Bin bin) {
+        bins.remove(bin);
+    }
+
+    public Bin addNewBin() {
         String binType = "";
         String composition = "";
+        String codeQr;
+        String binName;
 
-        System.out.println("Select which type of bin you want: ");
-        System.out.println("1. Compost bin (brown bin)");
-        System.out.println("2. Recycle bin (green bin)");
-        System.out.println("3. Garbage bin (black bin)");
+        System.out.println("Select type of bin you want to register: ");
+        System.out.println("1. COMPOST (brown bin)");
+        System.out.println("2. RECYCLE (green bin)");
+        System.out.println("3. GARBAGE (black bin)");
 
         Scanner scanner = new Scanner(System.in);
         int binChoice = scanner.nextInt();
 
         switch (binChoice) {
             case 1:
-                binType = "Compost";
+                binType = "COMPOST";
                 composition = "Organic waste (fruits, vegetables, meat, bones, etc); Green waste (leaves, flowers, grasses, etc)";
                 break;
 
             case 2:
-                binType = "Recycle";
-                composition = "Fibres (magazines, paper bags, etc); Glass (clean bottles, jars, etc), Empty containers (cartons, boxes, cans, etc)";
+                binType = "RECYCLE";
+                composition = "Fibers (magazines, paper bags, etc); Glasses (clean bottles, jars, etc), Empty containers (cartons, boxes, cans, etc)";
                 break;
 
             case 3:
-                binType = "Garbage";
-                composition = "Plastic; Household waste; Household appliances";
+                binType = "GARBAGE";
+                composition = "Unrecyclable household wastes";
                 break;
 
             default:
                 break;
         }
+
         System.out.print("Enter QR code for your bin: ");
-        String codeQr = scanner.next();
+        codeQr = scanner.nextLine();
 
-        Bin newBin = new Bin(binType, codeQr, composition);
-        resident.addBin(newBin);
+        System.out.print("Enter your bin name: ");
+        binName = scanner.nextLine();
 
-        System.out.println("\nBIN REGISTERED SUCCESSFULLY!");
+        scanner.close();
+
+        Bin newBin = new Bin(binType, codeQr, binName, composition);
+        return newBin;
 
     }
 

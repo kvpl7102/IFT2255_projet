@@ -1,27 +1,26 @@
 public class User {
-    private String id;
+    private String email;
     private String password;
     private String name;
-    private String email;
     private String address;
-    private String telephone;
-    private Request request;
+    private String phoneNum;
 
-    public User(String id, String password) {
-        this.id = id;
+    public User(String email, String password, String name, String phoneNum, String address) {
+        this.email = email;
         this.password = password;
-        request = new Request(id);
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.address = address;
     }
 
-    public void editInfo(String name, String email, String telephone, String address) {
+    public void editInfo(String name, String phoneNum, String address) {
         this.name = name;
-        this.email = email;
-        this.telephone = telephone;
+        this.phoneNum = phoneNum;
         this.address = address;
     }
 
     public String getId() {
-        return this.id;
+        return this.email;
     }
 
     public String getPassword() {
@@ -32,28 +31,32 @@ public class User {
         return this.name;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
     public String getAddress() {
         return this.address;
     }
 
-    public String getTelephone() {
-        return this.telephone;
+    public String getPhoneNum() {
+        return this.phoneNum;
     }
 
-    public String getRequest() {
-        return this.request.getDescription();
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void updateRequest(String description) {
-        this.request.setDescription(description);
+    public void setId(String email) {
+        this.email = email;
     }
 
-    public void deleteRequest() {
-        this.request.setDescription("");
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
 }

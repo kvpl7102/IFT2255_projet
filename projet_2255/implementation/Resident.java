@@ -1,38 +1,31 @@
 import java.util.ArrayList;
 
 public class Resident extends User {
-    private ArrayList<Bin> bins = new ArrayList<>();
+    private ArrayList<Bin> residentBins = new ArrayList<>();
 
-    public Resident(String id, String password) {
-        super(id, password);
+    public Resident(String id, String password, String name, String phoneNum, String address) {
+        super(id, password, name, phoneNum, address);
 
     }
 
     public void addBin(Bin bin) {
-        bins.add(bin);
+        residentBins.add(bin);
     }
 
     public void removeBin(int index) {
-        bins.remove(index);
+        residentBins.remove(index);
     }
 
-    public ArrayList<Bin> getBinList() {
-        return this.bins;
+    public ArrayList<Bin> getBinsList() {
+        return this.residentBins;
     }
 
-    public void printBins() {
+    public void printResidentBins() {
 
         System.out.println('\n');
-        System.out.println("=======================");
-        for (int i = 0; i < bins.size(); i++) {
-            System.out.println("Bin number " + (i + 1) + ": ");
-            bins.get(i).printState();
-
+        for (int i = 0; i < residentBins.size(); i++) {
+            System.out.println((i + 1) + ". " + residentBins.get(i).getName());
         }
-        System.out.println("=======================");
     }
 
-    public void noterConsommateur(Consommateur consommateur, double note) {
-        consommateur.notes.add(note);
-    }
 }

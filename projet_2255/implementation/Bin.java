@@ -1,14 +1,16 @@
 public class Bin {
 
     private String codeQr;
+    private String binName;
     private String binType;
     private double fillLevel;
     private String composition;
 
-    public Bin(String binType, String codeQr, String composition) {
+    public Bin(String binType, String codeQr, String binName, String composition) {
         this.fillLevel = 0;
         this.binType = binType;
         this.codeQr = codeQr;
+        this.binName = binName;
         this.composition = composition;
 
     }
@@ -33,8 +35,13 @@ public class Bin {
         return this.codeQr;
     }
 
+    public String getName() {
+        return this.binName;
+    }
+
     public void printState() {
         System.out.print("QR code: " + this.getCodeQr() + " | ");
+        System.out.print("Bin name: " + this.getName() + " | ");
         System.out.print("Fill Level: " + this.getFillLevel() + "% " + " | ");
         System.out.print("Type: " + this.getType() + " | ");
         System.out.println("Composition: " + this.getComposition());
