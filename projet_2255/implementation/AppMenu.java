@@ -15,9 +15,7 @@ public class AppMenu {
 
     public static void main(String[] args) {
         AppMenu menu = new AppMenu();
-
         menu.displayMenu();
-
     }
 
     public void displayMenu() {

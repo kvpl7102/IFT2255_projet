@@ -24,10 +24,10 @@ public class ConsumerActivity {
 
     public void addRating(double rating) {
         ratings.add(rating);
-        updateAverageRating();
+        updateOverallRating();
     }
 
-    private void updateAverageRating() {
+    private void updateOverallRating() {
         double sum = 0;
         double average;
 
