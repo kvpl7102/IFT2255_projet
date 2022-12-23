@@ -327,7 +327,7 @@ public class AppMenu {
                                 + "Address: " + consumer.getAddress() + " | "
                                 + "Phone number: " + consumer.getPhoneNum() + "|"
                                 + "Trash type:  " + consumer.getTrashType() + "|"
-                                + "Rating: " + consumer.getRating() + "]" + "\n");
+                                + "Rating: " + consumer.getOverallRating() + "]" + "\n");
 
                         // TODO: Rate a consumer
                         System.out.println("\n1. Rate an activity");

@@ -36,7 +36,7 @@ public class ConsumerActivity {
         }
         average = sum / ratings.size();
 
-        overallRating = average;
+        this.overallRating = average;
     }
 
 }

@@ -6,7 +6,6 @@ public class Consumer extends User {
     private String capacity;
     private double overallRating;
     private String trashType;
-    private ArrayList<Double> ratings;
     private ArrayList<ConsumerActivity> activities;
 
     public Consumer(String id, String password, String name, String code, String phoneNum, String address,
@@ -17,7 +16,6 @@ public class Consumer extends User {
         this.code = code;
         this.trashType = trashType;
         this.overallRating = 0;
-        ratings = new ArrayList<>();
         activities = new ArrayList<>();
     }
 
@@ -29,16 +27,17 @@ public class Consumer extends User {
         this.code = code;
     }
 
-    public double getRating() {
+    public double getOverallRating() {
         return this.overallRating;
     }
 
     public void calculateOverallRating() {
-        int sum = 0;
-        for (double rating : ratings) {
-            sum += rating;
+        double overallRating = 0;
+
+        for (ConsumerActivity activity : activities) {
+            overallRating += activity.getOverallRating();
         }
-        overallRating = sum / ratings.size();
+        this.overallRating = overallRating;
     }
 
     public String getCapacity() {
