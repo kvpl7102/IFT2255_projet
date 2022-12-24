@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class AppMenu {
@@ -9,9 +10,11 @@ public class AppMenu {
     UserController userController = new UserController();
     BinController binController = new BinController();
     ArrayList<String> notifications = new ArrayList<>();
-
+    ArrayList<String> feedback = new ArrayList<String>();
+    
     User loggedUser;
     boolean exit = false;
+    
 
     public static void main(String[] args) {
         AppMenu menu = new AppMenu();
@@ -92,7 +95,8 @@ public class AppMenu {
                 boolean validUser = false, exit = false;
 
                 while (!validUser && !exit) {
-                    System.out.print("\nEnter your ID: ");
+                    System.out.print("\nEnter your ID (your ID is your Email adress): ");
+                    
                     String id = scanner.next();
                     System.out.print("Enter your password: ");
                     String password = scanner.next();
@@ -121,6 +125,7 @@ public class AppMenu {
 
                     } else {
                         System.out.println("\nID or password incorrect, or account does not exist!");
+                        
                         displayLoginPage();
                         exit = true;
                     }
@@ -213,7 +218,7 @@ public class AppMenu {
             System.out.println("8. Edit your profile");
             System.out.println("0. Log out");
 
-            int userChoice = getUserInput(9);
+            int userChoice = getUserInput(8);
 
             if (userChoice == 0) { // logout option
                 loggedOut = true;
@@ -252,16 +257,24 @@ public class AppMenu {
                     System.out.println("\nChoose the bin you want to remove");
 
                     int binChoice = getUserInput(residentBinsList.size());
+                    
 
                     if (binChoice == 0) {
                         break;
                     }
+                    String name = residentBinsList.get(binChoice - 1).getName();
 
                     residentBinsList.remove(binChoice - 1);
+                    
 
-                    System.out.println("\nYou have removed bin " + residentBinsList.get(binChoice - 1).getName());
+                    System.out.println("\nYou have removed bin " + name);
                     System.out.println("\nYour updated bins list: ");
+                    if (residentBinsList.isEmpty()) {
+                        System.out.println("\nYou don't have any bin registered right now!");
+    
+                    } else{
                     ((Resident) loggedUser).printResidentBins();
+                }
                 }
                 break;
 
@@ -288,10 +301,50 @@ public class AppMenu {
                 break;
 
             case 5: // Show processing state
-                // TODO:
+                
+                System.out.println("==========Processing state==========");
+                ArrayList<Bin> residentBins = ((Resident) loggedUser).getBinsList();
+                
+                if (residentBins.isEmpty()) {
+                    System.out.println("You don't have any bin registered right now!");
+                } else {
+                    System.out.println("please choose a bin:");
+                    for (int i = 0; i < ((Resident) loggedUser).getBinsList().size(); i++){
+                        Bin bin = residentBins.get(i);
+                        System.out.println("[Bin "+ (i+1) + "] Bin name: " + bin.getName());
+                    }
+
+                    int binChoix = getUserInput(residentBins.size());
+                    System.out.println(residentBins.size());
+                    Bin theBin = residentBins.get(binChoix-1);
+
+                    long start = theBin.getStartTime().getTime();
+                    long now = System.currentTimeMillis( );
+                    long diff = now - start;
+                    long diffSec = diff / 1000;
+                    long days, hours, mins;
+
+                    days = diffSec / (60*60*24);
+                    hours = (diffSec - days * 86400)  / (60*60);
+                    mins = (diffSec - days * 86400 - hours * 3600) / 60;
+                    
+                    String time = days + " days, " + hours + " hours and " + mins + " minutes";
+
+                    String state="null";
+                    if(theBin.getBinStateType()==BinStateType.AVAILABLE){
+                        state = "AVAILABLE";
+                    }else if(theBin.getBinStateType()==BinStateType.TRANSITING){
+                        state = "TRANSITING";
+                    }else if(theBin.getBinStateType() == BinStateType.TREATING){
+                        state = "TREATING";
+                    }
+
+                    System.out.println("Your bin is now " + state + " for " + time + " and the fill level is " + theBin.getFillLevel());
+                }
+
                 break;
 
-            case 6: // Find and rate a consumer
+            case 6: // Find and rate a consumer, and mark an activity.
                 System.out.println("\n==========FIND A CONSUMER==========");
 
                 ArrayList<Consumer> consumersList = userController.getConsumers();
@@ -360,6 +413,11 @@ public class AppMenu {
                                     rating = Double.valueOf(scanner.nextInt());
                                     chosenActivity.addRating(rating);
                                 } while (rating < 0 || rating > 5);
+                                
+                                ((Resident) loggedUser).getActivities().add(chosenActivity);
+
+                                System.out.println("\nThis activity is marked successfully");
+                                
 
                                 System.out.println("\nThank you for your feedback!");
                                 break;
@@ -370,7 +428,8 @@ public class AppMenu {
 
             case 7: // Reporting a problem
                 System.out.println("\nWhat seems to be the problem?");
-                String answer = scanner.nextLine();
+                String answer = scanner.next();
+                feedback.add(answer);
 
                 System.out.println("\nTHANK YOU FOR YOUR FEEDBACK!");
                 break;
@@ -556,9 +615,11 @@ public class AppMenu {
             System.out.println("3. Delele an activity");
             System.out.println("4. Notify residents");
             System.out.println("5. Edit your profile");
+            System.out.println("6. Confirme to receive bins");
+            System.out.println("7. Confirme to finish processing bins");
             System.out.println("0. Log out");
 
-            int userChoice = getUserInput(5);
+            int userChoice = getUserInput(7);
 
             if (userChoice == 0) { // logout option
                 loggedOut = true;
@@ -820,12 +881,100 @@ public class AppMenu {
                     default:
                         System.out.println("Sorry, an unknown error has occurred :(");
                         break;
-                }
-                break;
+                }break;
+                
+            
+                case 6: //confirming to receive bins
+                    boolean finished = false;
+                
+                    
+                    System.out.println("\n==========CONFIRME TO RECEIVE BINS==========");
 
-            default:
-                System.out.println("Sorry, an unknown error has occurred :(");
-                break;
+                    while(finished == false){
+                         System.out.println("Enter the QR code of the bin you received");
+                         System.out.println("Enter 0 to quit");
+                         String newQR = scanner.next();
+   
+                         if(newQR == "0"){
+                            finished = true;
+                         }
+
+                         ArrayList<String> qRcodes = new ArrayList<String>();
+    
+                         for( int i= 0; i < binController.getBins().size(); i++){
+                             qRcodes.add(binController.getBins().get(i).getCodeQr());
+                         }//get arrayList of QRcodes according to index of ArrayList<bin>
+                
+                         int indexBin = -1;
+   
+                         for(int i = 0; i < qRcodes.size() ; i++){
+                             if( qRcodes.get(i) == newQR){
+                                 indexBin = i;
+                                 break;
+                             }
+                         }
+                         System.out.println(qRcodes);
+
+                         if(indexBin == -1){
+                             System.out.println("The QR code you gave is invalid");
+                             break;
+
+                         }else{
+                             Bin binRecu = binController.getBins().get(indexBin);
+                             binRecu.setBinStateType(BinStateType.TREATING);
+                             binRecu.setStartTime();
+                             System.out.println("The bin is marked as TREATING!");
+                         }
+                        }
+                
+                        case 7: //confirming to receive bins
+                        boolean fin = false;
+                    
+                        
+                        System.out.println("\n==========CONFIRME TO FINISH PROCESSING BINS==========");
+    
+                        while(fin == false){
+                             System.out.println("Enter the QR code of the bin you finished");
+                             System.out.println("Enter 0 to quit");
+                             String newQR = scanner.next();
+       
+                             if(newQR == "0"){
+                                fin = true;
+                             }
+        
+                             ArrayList<String> qRcodes = new ArrayList<String>();
+    
+                         for( int i= 0; i < binController.getBins().size(); i++){
+                             qRcodes.add(binController.getBins().get(i).getCodeQr());
+                         }//get arrayList of QRcodes according to index of ArrayList<bin>
+                
+                         int indexBin = -1;
+   
+                         for(int i = 0; i < qRcodes.size() ; i++){
+                             if( qRcodes.get(i) == newQR){
+                                 indexBin = i;
+                                 break;
+                             }
+                            }
+
+
+                             if(indexBin == -1){
+                                 System.out.println("The QR code you gave is invalid");
+                                 break;
+    
+                             }else{
+                                 Bin binRecu = binController.getBins().get(indexBin);
+                                 binRecu.setBinStateType(BinStateType.AVAILABLE);
+                                 binRecu.setStartTime();
+                                 System.out.println("The bin is marked as AVAILABLE!");
+                             }
+                            }                        
+
+            
+
+                default:
+                    System.out.println("Sorry, an unknown error has occurred :(");
+                    break;
 
         }
     }

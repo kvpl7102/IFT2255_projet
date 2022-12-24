@@ -7,6 +7,7 @@ public class Consumer extends User {
     private double overallRating;
     private String trashType;
     private ArrayList<ConsumerActivity> activities;
+    
 
     public Consumer(String id, String password, String name, String code, String phoneNum, String address,
             String trashType) {

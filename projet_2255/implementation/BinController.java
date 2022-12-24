@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class BinController implements Controller {
 
     private ArrayList<Bin> bins = new ArrayList<Bin>();
@@ -23,11 +24,13 @@ public class BinController implements Controller {
         System.out.println("1. COMPOST (brown bin)");
         System.out.println("2. RECYCLE (green bin)");
         System.out.println("3. GARBAGE (black bin)");
+        
 
         Scanner scanner = new Scanner(System.in);
         int binChoice = scanner.nextInt();
 
         switch (binChoice) {
+
             case 1:
                 binType = "COMPOST";
                 composition = "Organic waste (fruits, vegetables, meat, bones, etc); Green waste (leaves, flowers, grasses, etc)";
@@ -47,15 +50,22 @@ public class BinController implements Controller {
                 break;
         }
 
-        System.out.print("Enter QR code for your bin: ");
-        codeQr = scanner.nextLine();
 
         System.out.print("Enter your bin name: ");
-        binName = scanner.nextLine();
+        binName = scanner.next();
 
-        scanner.close();
+        
+        System.out.print("Enter QR code for your your bin: ");
+        codeQr = scanner.next();
+
+        
+        System.out.println(codeQr);
+
+        
 
         Bin newBin = new Bin(binType, codeQr, binName, composition);
+        newBin.setStartTime();
+        newBin.setBinStateType(BinStateType.AVAILABLE);
         return newBin;
 
     }

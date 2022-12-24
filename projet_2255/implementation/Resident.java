@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Resident extends User {
     private ArrayList<Bin> residentBins = new ArrayList<>();
+    private ArrayList<ConsumerActivity> notedActivities = new ArrayList<ConsumerActivity>();
 
     public Resident(String id, String password, String name, String phoneNum, String address) {
         super(id, password, name, phoneNum, address);
@@ -26,6 +27,10 @@ public class Resident extends User {
         for (int i = 0; i < residentBins.size(); i++) {
             System.out.println((i + 1) + ". " + residentBins.get(i).getName());
         }
+    }
+
+    public ArrayList<ConsumerActivity> getActivities(){
+        return this.notedActivities;
     }
 
 }

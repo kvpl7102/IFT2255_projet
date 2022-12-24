@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class Bin {
 
     private String codeQr;
@@ -5,6 +7,8 @@ public class Bin {
     private String binType;
     private double fillLevel;
     private String composition;
+    private BinStateType stateType;
+    private Date timeStart;
 
     public Bin(String binType, String codeQr, String binName, String composition) {
         this.fillLevel = 0;
@@ -15,12 +19,31 @@ public class Bin {
 
     }
 
+    public void setStartTime(){
+        this.timeStart = new Date();
+    }
+    
+    public Date getStartTime(){
+        return timeStart;
+
+    }
+
     public String getComposition() {
         return this.composition;
     }
 
     public double getFillLevel() {
         return this.fillLevel;
+    }
+
+    public void setBinStateType(BinStateType newType){
+        this.stateType = newType;
+    }
+
+    
+    public BinStateType getBinStateType(){
+        return this.stateType;
+
     }
 
     public void setFillLevel(double fillLevel) {
