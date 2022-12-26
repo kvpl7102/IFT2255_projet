@@ -11,11 +11,16 @@ public class UserController implements Controller {
     private Map<String, String> usersList;
     private ArrayList<Resident> residentsList;
     private ArrayList<Consumer> consumersList;
+    
+    
+    
 
     public UserController() {
         usersList = new HashMap<>();
         residentsList = new ArrayList<>();
         consumersList = new ArrayList<>();
+
+        
     }
 
     public boolean verifyUser(String id, String password) {

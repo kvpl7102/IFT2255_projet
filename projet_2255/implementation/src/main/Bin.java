@@ -4,18 +4,21 @@ public class Bin {
 
     private String codeQr;
     private String binName;
-    private String binType;
+    private BinType binType;
     private double fillLevel;
     private String composition;
     private BinStateType stateType;
     private Date timeStart;
 
-    public Bin(String binType, String codeQr, String binName, String composition) {
+    public Bin(BinType binType, String codeQr, String binName, String composition) {
         this.fillLevel = 0;
         this.binType = binType;
         this.codeQr = codeQr;
         this.binName = binName;
         this.composition = composition;
+
+        setStartTime();
+        setBinStateType(BinStateType.AVAILABLE);
 
     }
 
@@ -50,7 +53,7 @@ public class Bin {
         this.fillLevel = fillLevel;
     }
 
-    public String getType() {
+    public BinType getType() {
         return this.binType;
     }
 

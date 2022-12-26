@@ -7,7 +7,7 @@ public class BinController implements Controller {
     private ArrayList<Bin> bins = new ArrayList<Bin>();
 
     public ArrayList<Bin> getBins() {
-        return bins;
+        return this.bins;
     }
 
     public void removeBin(Bin bin) {
@@ -15,7 +15,7 @@ public class BinController implements Controller {
     }
 
     public Bin addNewBin() {
-        String binType = "";
+        BinType binType = BinType.COMPOSTAGE;
         String composition = "";
         String codeQr;
         String binName;
@@ -32,17 +32,17 @@ public class BinController implements Controller {
         switch (binChoice) {
 
             case 1:
-                binType = "COMPOST";
+                binType = BinType.COMPOSTAGE;
                 composition = "Organic waste (fruits, vegetables, meat, bones, etc); Green waste (leaves, flowers, grasses, etc)";
                 break;
 
             case 2:
-                binType = "RECYCLE";
+                binType = BinType.RECYCLAGE;
                 composition = "Fibers (magazines, paper bags, etc); Glasses (clean bottles, jars, etc), Empty containers (cartons, boxes, cans, etc)";
                 break;
 
             case 3:
-                binType = "GARBAGE";
+                binType = BinType.ORDURE;
                 composition = "Unrecyclable household wastes";
                 break;
 

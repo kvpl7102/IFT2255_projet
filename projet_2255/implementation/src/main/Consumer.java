@@ -18,6 +18,14 @@ public class Consumer extends User {
         this.trashType = trashType;
         this.overallRating = 0;
         activities = new ArrayList<>();
+
+        ConsumerActivity act1 = new ConsumerActivity("act1");
+        ConsumerActivity act2 = new ConsumerActivity("act2");
+        ConsumerActivity act3 = new ConsumerActivity("act3");
+        activities.add(act1);
+        activities.add(act2);
+        activities.add(act3);
+        //initials activities 
     }
 
     public String getCode() {

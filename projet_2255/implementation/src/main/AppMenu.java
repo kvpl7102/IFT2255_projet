@@ -11,17 +11,20 @@ public class AppMenu {
     BinController binController = new BinController();
     ArrayList<String> notifications = new ArrayList<>();
     ArrayList<String> feedback = new ArrayList<String>();
+    MetricController metricController = new MetricController(userController,binController);
     
     User loggedUser;
     boolean exit = false;
     
 
     public static void main(String[] args) {
+        
         AppMenu menu = new AppMenu();
         menu.displayMenu();
     }
 
     public void displayMenu() {
+        initialUsers();
 
         while (!exit) {
             System.out.println("\n=========================================");
@@ -49,6 +52,79 @@ public class AppMenu {
         }
         scanner.close();
 
+    }
+
+    public void initialUsers(){
+        
+
+        Resident resident1 = new Resident("res1", "123", "res1", "phone", "adr");
+        userController.getResidents().add(resident1);
+        userController.getUsers().put("res1", "123");
+
+        Bin bin1 = new Bin(BinType.ORDURE,"qr","bin1","null");
+        bin1.setFillLevel(45);
+        Bin bin2 = new Bin(BinType.RECYCLAGE,"qr","bin2","null");
+        bin2.setFillLevel(30);
+
+        this.binController.getBins().add(bin1);
+        this.binController.getBins().add(bin2);
+
+        Resident resident2 = new Resident("res2", "123", "res2", "phone", "adr");
+        userController.getResidents().add(resident2);
+        userController.getUsers().put("res2", "123");
+
+        this.binController.getBins().add(bin1);
+        this.binController.getBins().add(bin2);
+
+
+        Resident resident3 = new Resident("res3", "123", "res3", "phone", "adr");
+        userController.getResidents().add(resident3);
+        userController.getUsers().put("res3", "123");
+        this.binController.getBins().add(bin1);
+        this.binController.getBins().add(bin2);
+
+
+        Consumer cons1 = new Consumer("cons1","123","cons1","code1","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons1);
+        this.userController.getUsers().put("cons1","123");
+        
+
+        Consumer cons2 = new Consumer("cons2","123","cons2","code2","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons2);
+        this.userController.getUsers().put("cons2","123");
+
+        Consumer cons3 = new Consumer("cons3","123","cons3","code3","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons3);
+        this.userController.getUsers().put("cons3","123");
+
+        Consumer cons4 = new Consumer("cons4","123","cons4","code4","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons4);
+        this.userController.getUsers().put("cons4","123");
+
+        Consumer cons5 = new Consumer("cons1","123","cons5","code5","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons5);
+        this.userController.getUsers().put("cons1","123");
+
+        Consumer cons6 = new Consumer("cons6","123","cons6","code6","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons6);
+        this.userController.getUsers().put("cons6","123");
+
+        Consumer cons7 = new Consumer("cons7","123","cons7","code7","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons7);
+        this.userController.getUsers().put("cons7","123");
+
+        Consumer cons8 = new Consumer("cons8","123","cons8","code8","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons8);
+        this.userController.getUsers().put("cons8","123");
+
+        Consumer cons9 = new Consumer("cons9","123","cons9","code9","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons9);
+        this.userController.getUsers().put("cons9","123");
+
+        Consumer cons10 = new Consumer("cons10","123","cons10","code10","phone","adr","COMPOSTAGE");
+        this.userController.getConsumers().add(cons10);
+        this.userController.getUsers().put("cons10","123");
+        //initial users
     }
 
     public void performFirstPageAction(int userChoice) {
@@ -212,7 +288,7 @@ public class AppMenu {
             System.out.println("2. Remove a bin");
             System.out.println("3. Display your bins");
             System.out.println("4. Display your ecological metrics");
-            System.out.println("5. Municipal waste process");
+            System.out.println("5. Display bac status");
             System.out.println("6. Find a consumer");
             System.out.println("7. Report a problem");
             System.out.println("8. Edit your profile");
@@ -236,8 +312,8 @@ public class AppMenu {
             case 1: // Registering new bin
                 System.out.println("\n==========REGISTERING NEW BIN==========");
 
-                Bin newBin = binController.addNewBin();
-                binController.getBins().add(newBin);
+                Bin newBin = this.binController.addNewBin();
+                this.binController.getBins().add(newBin);
                 ((Resident) loggedUser).addBin(newBin);
 
                 System.out.println("\nBIN REGISTERED SUCCESSFULLY!");
@@ -297,7 +373,12 @@ public class AppMenu {
                 break;
 
             case 4: // Show metrics
-                // TODO:
+                
+                this.metricController = new MetricController(this.userController, this.binController);
+                this.metricController.showMetrics();
+                System.out.println("\n");
+                Metric metric = new Metric(this.metricController, ((Resident)loggedUser));
+                metric.showMetricRes();
                 break;
 
             case 5: // Show processing state
@@ -382,7 +463,7 @@ public class AppMenu {
                                 + "Trash type:  " + consumer.getTrashType() + "|"
                                 + "Rating: " + consumer.getOverallRating() + "]" + "\n");
 
-                        // TODO: Rate a consumer
+                        
                         System.out.println("\n1. Rate an activity");
                         System.out.println("0. Go back");
 
@@ -901,26 +982,29 @@ public class AppMenu {
 
                          ArrayList<String> qRcodes = new ArrayList<String>();
     
-                         for( int i= 0; i < binController.getBins().size(); i++){
-                             qRcodes.add(binController.getBins().get(i).getCodeQr());
+                         for( int i= 0; i < this.binController.getBins().size(); i++){
+                             qRcodes.add(this.binController.getBins().get(i).getCodeQr());
                          }//get arrayList of QRcodes according to index of ArrayList<bin>
                 
                          int indexBin = -1;
+                         
    
                          for(int i = 0; i < qRcodes.size() ; i++){
                              if( qRcodes.get(i) == newQR){
+                                System.out.println(qRcodes.get(i));
+                                System.out.println(newQR);
                                  indexBin = i;
                                  break;
                              }
                          }
-                         System.out.println(qRcodes);
+                         
 
                          if(indexBin == -1){
                              System.out.println("The QR code you gave is invalid");
                              break;
 
                          }else{
-                             Bin binRecu = binController.getBins().get(indexBin);
+                             Bin binRecu = this.binController.getBins().get(indexBin);
                              binRecu.setBinStateType(BinStateType.TREATING);
                              binRecu.setStartTime();
                              System.out.println("The bin is marked as TREATING!");
@@ -944,8 +1028,8 @@ public class AppMenu {
         
                              ArrayList<String> qRcodes = new ArrayList<String>();
     
-                         for( int i= 0; i < binController.getBins().size(); i++){
-                             qRcodes.add(binController.getBins().get(i).getCodeQr());
+                         for( int i= 0; i < this.binController.getBins().size(); i++){
+                             qRcodes.add(this.binController.getBins().get(i).getCodeQr());
                          }//get arrayList of QRcodes according to index of ArrayList<bin>
                 
                          int indexBin = -1;
@@ -963,7 +1047,7 @@ public class AppMenu {
                                  break;
     
                              }else{
-                                 Bin binRecu = binController.getBins().get(indexBin);
+                                 Bin binRecu = this.binController.getBins().get(indexBin);
                                  binRecu.setBinStateType(BinStateType.AVAILABLE);
                                  binRecu.setStartTime();
                                  System.out.println("The bin is marked as AVAILABLE!");
