@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class AppMenu {
+    //class principal
 
     Scanner scanner = new Scanner(System.in);
 

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+//controller for class bin
 public class BinController implements Controller {
 
     private ArrayList<Bin> bins = new ArrayList<Bin>();

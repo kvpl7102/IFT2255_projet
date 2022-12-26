@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//class for consumers.
 public class Consumer extends User {
 
     private String code;

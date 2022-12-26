@@ -1,5 +1,5 @@
 import java.util.Date;
-
+//class for bin/bacs.
 public class Bin {
 
     private String codeQr;
