@@ -1,8 +1,8 @@
+import org.junit.After;
+
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertation.*;
-
-import org.junit.jupiter.api.test;
+/**import static org.junit.jupiter.api.Assertation.*;*/
 
 public class AppMenuTest {
     UserController userC;
