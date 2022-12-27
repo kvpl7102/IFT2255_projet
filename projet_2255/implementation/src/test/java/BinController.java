@@ -1,19 +1,27 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class BinController implements Controller {
 
     private ArrayList<Bin> bins = new ArrayList<Bin>();
 
+    /**
+     * @return ArrayList<Bin>
+     */
     public ArrayList<Bin> getBins() {
         return this.bins;
     }
 
+    /**
+     * @param bin
+     */
     public void removeBin(Bin bin) {
         bins.remove(bin);
     }
 
+    /**
+     * @return Bin
+     */
     public Bin addNewBin() {
         BinType binType = BinType.COMPOSTAGE;
         String composition = "";
@@ -24,7 +32,6 @@ public class BinController implements Controller {
         System.out.println("1. COMPOST (brown bin)");
         System.out.println("2. RECYCLE (green bin)");
         System.out.println("3. GARBAGE (black bin)");
-        
 
         Scanner scanner = new Scanner(System.in);
         int binChoice = scanner.nextInt();
@@ -50,18 +57,13 @@ public class BinController implements Controller {
                 break;
         }
 
-
         System.out.print("Enter your bin name: ");
         binName = scanner.next();
 
-        
         System.out.print("Enter QR code for your your bin: ");
         codeQr = scanner.next();
 
-        
         System.out.println(codeQr);
-
-        
 
         Bin newBin = new Bin(binType, codeQr, binName, composition);
         newBin.setStartTime();

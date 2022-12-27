@@ -10,18 +10,30 @@ public class ConsumerActivity {
         this.activityName = activityName;
     }
 
+    /**
+     * @return String
+     */
     public String getActivityName() {
         return this.activityName;
     }
 
+    /**
+     * @param activityName
+     */
     public void setActivityName(String activityName) {
         this.activityName = activityName;
     }
 
+    /**
+     * @return double
+     */
     public double getOverallRating() {
         return this.overallRating;
     }
 
+    /**
+     * @param rating
+     */
     public void addRating(double rating) {
         ratings.add(rating);
         updateOverallRating();

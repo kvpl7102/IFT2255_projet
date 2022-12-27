@@ -22,49 +22,78 @@ public class Bin {
 
     }
 
-    public void setStartTime(){
+    public void setStartTime() {
         this.timeStart = new Date();
     }
-    
-    public BinType getBinType(){
+
+    /**
+     * @return BinType
+     */
+    public BinType getBinType() {
         return this.binType;
     }
 
-    public Date getStartTime(){
+    /**
+     * @return Date
+     */
+    public Date getStartTime() {
         return timeStart;
 
     }
 
+    /**
+     * @return String
+     */
     public String getComposition() {
         return this.composition;
     }
 
+    /**
+     * @return double
+     */
     public double getFillLevel() {
         return this.fillLevel;
     }
 
-    public void setBinStateType(BinStateType newType){
+    /**
+     * @param newType
+     */
+    public void setBinStateType(BinStateType newType) {
         this.stateType = newType;
     }
 
-    
-    public BinStateType getBinStateType(){
+    /**
+     * @return BinStateType
+     */
+    public BinStateType getBinStateType() {
         return this.stateType;
 
     }
 
+    /**
+     * @param fillLevel
+     */
     public void setFillLevel(double fillLevel) {
         this.fillLevel = fillLevel;
     }
 
+    /**
+     * @return BinType
+     */
     public BinType getType() {
         return this.binType;
     }
 
+    /**
+     * @return String
+     */
     public String getCodeQr() {
         return this.codeQr;
     }
 
+    /**
+     * @return String
+     */
     public String getName() {
         return this.binName;
     }

@@ -7,7 +7,6 @@ public class Consumer extends User {
     private double overallRating;
     private String trashType;
     private ArrayList<ConsumerActivity> activities;
-    
 
     public Consumer(String id, String password, String name, String code, String phoneNum, String address,
             String trashType) {
@@ -25,17 +24,26 @@ public class Consumer extends User {
         activities.add(act1);
         activities.add(act2);
         activities.add(act3);
-        //initials activities 
+        // initials activities
     }
 
+    /**
+     * @return String
+     */
     public String getCode() {
         return this.code;
     }
 
+    /**
+     * @param code
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * @return double
+     */
     public double getOverallRating() {
         return this.overallRating;
     }
@@ -49,26 +57,44 @@ public class Consumer extends User {
         this.overallRating = overallRating;
     }
 
+    /**
+     * @return String
+     */
     public String getCapacity() {
         return this.capacity;
     }
 
+    /**
+     * @param capacity
+     */
     public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 
+    /**
+     * @return String
+     */
     public String getTrashType() {
         return this.trashType;
     }
 
+    /**
+     * @param trashType
+     */
     public void setTrashType(String trashType) {
         this.trashType = trashType;
     }
 
+    /**
+     * @return ArrayList<ConsumerActivity>
+     */
     public ArrayList<ConsumerActivity> getActivities() {
         return this.activities;
     }
 
+    /**
+     * @return String
+     */
     public String printActivities() {
         String result = "";
 
