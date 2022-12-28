@@ -331,6 +331,11 @@ public class AppMenu {
 
                 System.out.println("\nBIN REGISTERED SUCCESSFULLY!");
 
+                entreToContinue();
+                
+                
+                
+
                 break;
 
             case 2: // Removing a bin
@@ -363,6 +368,7 @@ public class AppMenu {
                         ((Resident) loggedUser).printResidentBins();
                     }
                 }
+                entreToContinue();
                 break;
 
             case 3: // Show bins list
@@ -381,6 +387,7 @@ public class AppMenu {
                                 + bin.getComposition() + "]" + "\n");
                     }
                 }
+                entreToContinue();
                 break;
 
             case 4: // Show metrics
@@ -390,6 +397,7 @@ public class AppMenu {
                 System.out.println("\n");
                 Metric metric = new Metric(this.metricController, ((Resident) loggedUser));
                 metric.showMetricRes();
+                entreToContinue();
                 break;
 
             case 5: // Show processing state
@@ -440,6 +448,8 @@ public class AppMenu {
                     System.out.println("Your bin is now " + state + " for " + time + " and the fill level is "
                             + theBin.getFillLevel() + ifT) ;
                 }
+
+                entreToContinue();
 
                 break;
 
@@ -521,6 +531,8 @@ public class AppMenu {
                         }
                     }
                 }
+
+                entreToContinue();
                 break;
 
             case 7: // Reporting a problem
@@ -529,6 +541,7 @@ public class AppMenu {
                 feedback.add(answer);
 
                 System.out.println("\nTHANK YOU FOR YOUR FEEDBACK!");
+                entreToContinue();
                 break;
 
             case 8: // Edit your profile
@@ -573,6 +586,10 @@ public class AppMenu {
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
 
+                        entreToContinue();
+
+                        
+
                         break;
 
                     // Changing ID
@@ -587,6 +604,8 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     // Changing password
@@ -601,6 +620,8 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     // Changing address
@@ -615,6 +636,8 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     // Changing phone number
@@ -629,10 +652,14 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     default:
                         System.out.println("Sorry, an unknown error has occurred :(");
+
+                        entreToContinue();
                         break;
                 }
 
@@ -640,6 +667,8 @@ public class AppMenu {
 
             default:
                 System.out.println("Sorry, an unknown error has occurred :(");
+
+                entreToContinue();
                 break;
         }
     }
@@ -773,6 +802,8 @@ public class AppMenu {
 
                         notifications.add(((Consumer) loggedUser).getName() + " added new activity: " + activityName);
 
+                        entreToContinue();
+
                         break;
 
                     default:
@@ -817,6 +848,8 @@ public class AppMenu {
                     notifications.add(
                             ((Consumer) loggedUser).getName() + "has renamed activity " + oldName + " to " + newName);
                 }
+
+                entreToContinue();
                 break;
 
             case 3: // Delete an activity
@@ -845,6 +878,8 @@ public class AppMenu {
                     notifications
                             .add(((Consumer) loggedUser).getName() + " has removed activity " + removedActivityName);
                 }
+
+                entreToContinue();
                 break;
 
             case 4: // Notify residents
@@ -862,6 +897,8 @@ public class AppMenu {
                 } while (notif == "");
 
                 System.out.println("\nNotification added!");
+
+                entreToContinue();
                 break;
 
             case 5: // Edit your profile
@@ -907,6 +944,8 @@ public class AppMenu {
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
 
+                        entreToContinue();
+
                         break;
 
                     case 2: // Changing ID
@@ -921,6 +960,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 3: // Changing password
@@ -935,6 +976,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 4: // Changing address
@@ -949,6 +992,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 5: // Changing phone number
@@ -963,6 +1008,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 6: // Changing type of garbage processing
@@ -977,9 +1024,13 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
                     default:
                         System.out.println("Sorry, an unknown error has occurred :(");
+
+                        entreToContinue();
                         break;
                 }
                 break;
@@ -1037,6 +1088,8 @@ public class AppMenu {
                     this.lots.add(lot);
 
                 }
+
+                entreToContinue();
                 break;
             
 
@@ -1091,6 +1144,8 @@ public class AppMenu {
                         System.out.println("The QR code you entred is invalid");
                     }
                 }
+
+                entreToContinue();
                 break;
                         
 
@@ -1165,6 +1220,12 @@ public String findLotList(Bin bin){
     }
     
     return list;
+}
+
+public void entreToContinue(){
+    System.out.println("enter anything to continue(ex: \"1\")");
+    scanner.next();
+    
 }
 
 }
