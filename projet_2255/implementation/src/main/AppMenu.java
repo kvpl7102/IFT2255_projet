@@ -14,6 +14,7 @@ public class AppMenu {
     ArrayList<String> feedback = new ArrayList<String>();
     MetricController metricController = new MetricController(userController, binController);
     ArrayList<ArrayList<Bin>> lots= new ArrayList<ArrayList<Bin>>();
+    
 
     User loggedUser;
     boolean exit = false;
@@ -126,12 +127,50 @@ public class AppMenu {
         this.userController.getUsers().put("cons10", "123");
         // initial users
 
-        ArrayList<Bin> lot = new ArrayList<Bin>();
-        lot.add(bin2);
-        lots.add(lot);
+        ArrayList<Bin> lot1 = new ArrayList<Bin>();
+        lot1.add(bin2);
+        lots.add(lot1);
         lots.get(0).get(0).setBinStateType(BinStateType.TREATING);
         lots.get(0).get(0).setStartTime();
         
+        ArrayList<Bin> lot2 = new ArrayList<Bin>();
+        lot2.add(bin1);
+        lots.add(lot2);
+        lots.get(1).get(0).setBinStateType(BinStateType.TREATING);
+        lots.get(1).get(0).setStartTime();
+
+        ArrayList<Bin> lot3 = new ArrayList<Bin>();
+        lot3.add(bin1);
+        lots.add(lot3);
+        lots.get(2).get(0).setBinStateType(BinStateType.TRANSITING);
+        lots.get(2).get(0).setStartTime();
+
+        ArrayList<Bin> lot4 = new ArrayList<Bin>();
+        lot4.add(bin1);
+        lot4.add(bin1);
+        lot4.add(bin2);
+        lots.add(lot4);
+        lots.get(3).get(0).setBinStateType(BinStateType.TRANSITING);
+        lots.get(3).get(0).setStartTime();
+        lots.get(3).get(1).setBinStateType(BinStateType.TRANSITING);
+        lots.get(3).get(1).setStartTime();
+        lots.get(3).get(2).setBinStateType(BinStateType.TRANSITING);
+        lots.get(3).get(2).setStartTime();
+
+        ArrayList<Bin> lot5 = new ArrayList<Bin>();
+        lot5.add(bin1);
+
+        lot5.add(bin2);
+        lots.add(lot5);
+        lots.get(4).get(0).setBinStateType(BinStateType.TRANSITING);
+        lots.get(4).get(0).setStartTime();
+        lots.get(4).get(1).setBinStateType(BinStateType.TRANSITING);
+        lots.get(4).get(1).setStartTime();
+
+        //instances for lots
+
+
+
     }
 
     /**
@@ -302,9 +341,10 @@ public class AppMenu {
             System.out.println("6. Find a consumer");
             System.out.println("7. Report a problem");
             System.out.println("8. Edit your profile");
+            System.out.println("9. Display lot list");
             System.out.println("0. Log out");
 
-            int userChoice = getUserInput(8);
+            int userChoice = getUserInput(9);
 
             if (userChoice == 0) { // logout option
                 loggedOut = true;
@@ -663,6 +703,12 @@ public class AppMenu {
                         break;
                 }
 
+                break;
+
+            case 9:
+                showLotList();
+
+                entreToContinue();
                 break;
 
             default:
@@ -1190,8 +1236,15 @@ public class AppMenu {
     }
 
 
+
+ /**
+     * Method to get the strings of all bins in this lot according to the lot where the bin is located
+     * 
+     * @param bin the bin that we would find the location
+     * @return string to show the list
+     */
 public String findLotList(Bin bin){
-    //ArrayList<Bin> lotTarget = new ArrayList<Bin>();
+    
     String list = "";
 
     for(int i=0;i<lots.size();i++){
@@ -1222,10 +1275,44 @@ public String findLotList(Bin bin){
     return list;
 }
 
+/**
+     * Method to take a break before showing more messages
+     * 
+     * @param null
+     * @return null
+     */
+
 public void entreToContinue(){
     System.out.println("enter anything to continue(ex: \"1\")");
     scanner.next();
     
+}
+/**
+     * Method the list of all lots we have
+     * 
+     * @param null
+     * @return null
+     */
+public void showLotList(){
+    
+    
+    String lotList = "";
+
+    for(int i=0;i< lots.size();i++){
+        ArrayList<Bin> Thelot = new ArrayList<Bin>();
+
+        lotList = lotList + "["+ i +"] : ";
+
+        Thelot = lots.get(i);
+        for(int j = 0;j< Thelot.size();j++){
+            lotList = lotList + " | " + Thelot.get(j).getName();
+            
+        }
+
+        lotList = lotList + "\n";
+    }
+
+    System.out.println(lotList);
 }
 
 }
