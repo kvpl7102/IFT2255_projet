@@ -1,4 +1,7 @@
 public class User {
+
+    //prologe: class for users setting and setup;
+
     private String email;
     private String password;
     private String name;

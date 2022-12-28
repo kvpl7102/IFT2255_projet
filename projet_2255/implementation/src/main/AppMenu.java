@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class AppMenu {
     // class principal
+    //Prologe:This class focuses on the display of the menu and the classification of different levels
 
     Scanner scanner = new Scanner(System.in);
 
@@ -1178,6 +1179,7 @@ public class AppMenu {
                                 Bin myBin = lot.get(z);
                                 myBin.setBinStateType(BinStateType.AVAILABLE);
                                 myBin.setStartTime();
+                                myBin.setFillLevel(0);
                                 }
                             lots.remove(lot);
                             find = true;

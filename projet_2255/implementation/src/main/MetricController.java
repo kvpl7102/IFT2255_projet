@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class MetricController implements Controller {
+    //prologe: controller for all system's global metric
+    
     private int userNb, residentNb, consNb;
     private int binNb;
     private int binCompNb, binRecyNb, binOrdureNb;

@@ -8,6 +8,8 @@ import java.util.Map;
  */
 public class UserController implements Controller {
 
+    //prologe: controller class for all users including resident and consumers;
+
     private Map<String, String> usersList;
     private ArrayList<Resident> residentsList;
     private ArrayList<Consumer> consumersList;

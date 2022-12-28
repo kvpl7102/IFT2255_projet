@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class AppMenu {
+    // class principal
 
     Scanner scanner = new Scanner(System.in);
 
@@ -12,6 +13,8 @@ public class AppMenu {
     ArrayList<String> notifications = new ArrayList<>();
     ArrayList<String> feedback = new ArrayList<String>();
     MetricController metricController = new MetricController(userController, binController);
+    ArrayList<ArrayList<Bin>> lots= new ArrayList<ArrayList<Bin>>();
+    
 
     User loggedUser;
     boolean exit = false;
@@ -62,9 +65,9 @@ public class AppMenu {
         userController.getResidents().add(resident1);
         userController.getUsers().put("res1", "123");
 
-        Bin bin1 = new Bin(BinType.ORDURE, "qr", "bin1", "null");
+        Bin bin1 = new Bin(BinType.ORDURE, "qr1", "bin1", "null");
         bin1.setFillLevel(45);
-        Bin bin2 = new Bin(BinType.RECYCLAGE, "qr", "bin2", "null");
+        Bin bin2 = new Bin(BinType.RECYCLAGE, "qr2", "bin2", "null");
         bin2.setFillLevel(30);
 
         this.binController.getBins().add(bin1);
@@ -123,6 +126,51 @@ public class AppMenu {
         this.userController.getConsumers().add(cons10);
         this.userController.getUsers().put("cons10", "123");
         // initial users
+
+        ArrayList<Bin> lot1 = new ArrayList<Bin>();
+        lot1.add(bin2);
+        lots.add(lot1);
+        lots.get(0).get(0).setBinStateType(BinStateType.TREATING);
+        lots.get(0).get(0).setStartTime();
+        
+        ArrayList<Bin> lot2 = new ArrayList<Bin>();
+        lot2.add(bin1);
+        lots.add(lot2);
+        lots.get(1).get(0).setBinStateType(BinStateType.TREATING);
+        lots.get(1).get(0).setStartTime();
+
+        ArrayList<Bin> lot3 = new ArrayList<Bin>();
+        lot3.add(bin1);
+        lots.add(lot3);
+        lots.get(2).get(0).setBinStateType(BinStateType.TRANSITING);
+        lots.get(2).get(0).setStartTime();
+
+        ArrayList<Bin> lot4 = new ArrayList<Bin>();
+        lot4.add(bin1);
+        lot4.add(bin1);
+        lot4.add(bin2);
+        lots.add(lot4);
+        lots.get(3).get(0).setBinStateType(BinStateType.TRANSITING);
+        lots.get(3).get(0).setStartTime();
+        lots.get(3).get(1).setBinStateType(BinStateType.TRANSITING);
+        lots.get(3).get(1).setStartTime();
+        lots.get(3).get(2).setBinStateType(BinStateType.TRANSITING);
+        lots.get(3).get(2).setStartTime();
+
+        ArrayList<Bin> lot5 = new ArrayList<Bin>();
+        lot5.add(bin1);
+
+        lot5.add(bin2);
+        lots.add(lot5);
+        lots.get(4).get(0).setBinStateType(BinStateType.TRANSITING);
+        lots.get(4).get(0).setStartTime();
+        lots.get(4).get(1).setBinStateType(BinStateType.TRANSITING);
+        lots.get(4).get(1).setStartTime();
+
+        //instances for lots
+
+
+
     }
 
     /**
@@ -293,9 +341,10 @@ public class AppMenu {
             System.out.println("6. Find a consumer");
             System.out.println("7. Report a problem");
             System.out.println("8. Edit your profile");
+            System.out.println("9. Display lot list");
             System.out.println("0. Log out");
 
-            int userChoice = getUserInput(8);
+            int userChoice = getUserInput(9);
 
             if (userChoice == 0) { // logout option
                 loggedOut = true;
@@ -321,6 +370,11 @@ public class AppMenu {
                 ((Resident) loggedUser).addBin(newBin);
 
                 System.out.println("\nBIN REGISTERED SUCCESSFULLY!");
+
+                entreToContinue();
+                
+                
+                
 
                 break;
 
@@ -354,6 +408,7 @@ public class AppMenu {
                         ((Resident) loggedUser).printResidentBins();
                     }
                 }
+                entreToContinue();
                 break;
 
             case 3: // Show bins list
@@ -372,6 +427,7 @@ public class AppMenu {
                                 + bin.getComposition() + "]" + "\n");
                     }
                 }
+                entreToContinue();
                 break;
 
             case 4: // Show metrics
@@ -381,6 +437,7 @@ public class AppMenu {
                 System.out.println("\n");
                 Metric metric = new Metric(this.metricController, ((Resident) loggedUser));
                 metric.showMetricRes();
+                entreToContinue();
                 break;
 
             case 5: // Show processing state
@@ -414,17 +471,25 @@ public class AppMenu {
                     String time = days + " days, " + hours + " hours and " + mins + " minutes";
 
                     String state = "null";
+
+                    String ifT = ""; //message affiche when the bin is treating;
                     if (theBin.getBinStateType() == BinStateType.AVAILABLE) {
                         state = "AVAILABLE";
                     } else if (theBin.getBinStateType() == BinStateType.TRANSITING) {
                         state = "TRANSITING";
                     } else if (theBin.getBinStateType() == BinStateType.TREATING) {
                         state = "TREATING";
+                        ifT = " The list of bins in the lot it belongs to is " + findLotList(theBin);
+                        
                     }
 
+                    
+
                     System.out.println("Your bin is now " + state + " for " + time + " and the fill level is "
-                            + theBin.getFillLevel());
+                            + theBin.getFillLevel() + ifT) ;
                 }
+
+                entreToContinue();
 
                 break;
 
@@ -506,6 +571,8 @@ public class AppMenu {
                         }
                     }
                 }
+
+                entreToContinue();
                 break;
 
             case 7: // Reporting a problem
@@ -514,6 +581,7 @@ public class AppMenu {
                 feedback.add(answer);
 
                 System.out.println("\nTHANK YOU FOR YOUR FEEDBACK!");
+                entreToContinue();
                 break;
 
             case 8: // Edit your profile
@@ -558,6 +626,10 @@ public class AppMenu {
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
 
+                        entreToContinue();
+
+                        
+
                         break;
 
                     // Changing ID
@@ -572,6 +644,8 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     // Changing password
@@ -586,6 +660,8 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     // Changing address
@@ -600,6 +676,8 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     // Changing phone number
@@ -614,17 +692,29 @@ public class AppMenu {
                         System.out.println("3. Password: " + loggedUser.getPassword());
                         System.out.println("4. Address: " + loggedUser.getAddress());
                         System.out.println("5. Phone number: " + loggedUser.getPhoneNum());
+
+                        entreToContinue();
                         break;
 
                     default:
                         System.out.println("Sorry, an unknown error has occurred :(");
+
+                        entreToContinue();
                         break;
                 }
 
                 break;
 
+            case 9:
+                showLotList();
+
+                entreToContinue();
+                break;
+
             default:
                 System.out.println("Sorry, an unknown error has occurred :(");
+
+                entreToContinue();
                 break;
         }
     }
@@ -758,6 +848,8 @@ public class AppMenu {
 
                         notifications.add(((Consumer) loggedUser).getName() + " added new activity: " + activityName);
 
+                        entreToContinue();
+
                         break;
 
                     default:
@@ -802,6 +894,8 @@ public class AppMenu {
                     notifications.add(
                             ((Consumer) loggedUser).getName() + "has renamed activity " + oldName + " to " + newName);
                 }
+
+                entreToContinue();
                 break;
 
             case 3: // Delete an activity
@@ -830,6 +924,8 @@ public class AppMenu {
                     notifications
                             .add(((Consumer) loggedUser).getName() + " has removed activity " + removedActivityName);
                 }
+
+                entreToContinue();
                 break;
 
             case 4: // Notify residents
@@ -847,6 +943,8 @@ public class AppMenu {
                 } while (notif == "");
 
                 System.out.println("\nNotification added!");
+
+                entreToContinue();
                 break;
 
             case 5: // Edit your profile
@@ -892,6 +990,8 @@ public class AppMenu {
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
 
+                        entreToContinue();
+
                         break;
 
                     case 2: // Changing ID
@@ -906,6 +1006,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 3: // Changing password
@@ -920,6 +1022,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 4: // Changing address
@@ -934,6 +1038,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 5: // Changing phone number
@@ -948,6 +1054,8 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
 
                     case 6: // Changing type of garbage processing
@@ -962,9 +1070,13 @@ public class AppMenu {
                         System.out.println("4. Address: " + ((Consumer) loggedUser).getAddress());
                         System.out.println("5. Phone number: " + ((Consumer) loggedUser).getPhoneNum());
                         System.out.println("6. Processing type: " + ((Consumer) loggedUser).getTrashType());
+
+                        entreToContinue();
                         break;
                     default:
                         System.out.println("Sorry, an unknown error has occurred :(");
+
+                        entreToContinue();
                         break;
                 }
                 break;
@@ -975,11 +1087,14 @@ public class AppMenu {
                 System.out.println("\n==========CONFIRME TO RECEIVE BINS==========");
 
                 while (finished == false) {
+                    
                     System.out.println("Enter the QR code of the bin you received");
                     System.out.println("Enter 0 to quit");
                     String newQR = scanner.next();
 
-                    if (newQR == "0") {
+                    ArrayList<Bin> lot = new ArrayList<Bin>();
+
+                    if (newQR.equals("0")) {
                         finished = true;
                     }
 
@@ -991,10 +1106,13 @@ public class AppMenu {
 
                     int indexBin = -1;
 
+                    
+
                     for (int i = 0; i < qRcodes.size(); i++) {
-                        if (qRcodes.get(i) == newQR) {
-                            System.out.println(qRcodes.get(i));
-                            System.out.println(newQR);
+                        
+                        if (qRcodes.get(i).equals(newQR)) {
+                            
+                            
                             indexBin = i;
                             break;
                         }
@@ -1008,50 +1126,79 @@ public class AppMenu {
                         Bin binRecu = this.binController.getBins().get(indexBin);
                         binRecu.setBinStateType(BinStateType.TREATING);
                         binRecu.setStartTime();
+                        lot.add(binRecu);
                         System.out.println("The bin is marked as TREATING!");
                     }
+                     
+
+                    this.lots.add(lot);
+
                 }
 
-            case 7: // confirming to receive bins
-                boolean fin = false;
+                entreToContinue();
+                break;
+            
+
+            case 7: // confirming to finish processing a LOT
+                boolean end = false;
 
                 System.out.println("\n==========CONFIRME TO FINISH PROCESSING BINS==========");
 
-                while (fin == false) {
-                    System.out.println("Enter the QR code of the bin you finished");
+                while (end == false) {
+                    System.out.println("Enter a QR code of the bin in the lot that you finished");
                     System.out.println("Enter 0 to quit");
                     String newQR = scanner.next();
+                    boolean find = false;
 
-                    if (newQR == "0") {
-                        fin = true;
+                    if (newQR.equals("0")) {
+                        end = true;
+                        break;
                     }
+                    
 
-                    ArrayList<String> qRcodes = new ArrayList<String>();
 
-                    for (int i = 0; i < this.binController.getBins().size(); i++) {
-                        qRcodes.add(this.binController.getBins().get(i).getCodeQr());
-                    } // get arrayList of QRcodes according to index of ArrayList<bin>
+                    
+                    for(int i = 0;i<lots.size();i++){
+                        ArrayList<Bin> lot = lots.get(i);
+                        ArrayList<String> qRcodes = new ArrayList<String>();//list of QR codes for this lot
+                        for(int j = 0;j<lot.size();j++){
+                            
+                            qRcodes.add(lot.get(j).getCodeQr());// get arrayList of QRcodes according to index of ArrayList<bin>
+                        }
 
-                    int indexBin = -1;
-
-                    for (int i = 0; i < qRcodes.size(); i++) {
-                        if (qRcodes.get(i) == newQR) {
-                            indexBin = i;
-                            break;
+                        boolean binInside = false;
+                        for(int j = 0;j<lot.size();j++){
+                            if(newQR.equals(qRcodes.get(j))){
+                                binInside = true;
+                            }
+                        }
+                        
+                        if(binInside){
+                            for(int z=0;z<lot.size();z++){
+                                Bin myBin = lot.get(z);
+                                myBin.setBinStateType(BinStateType.AVAILABLE);
+                                myBin.setStartTime();
+                                myBin.setFillLevel(0);
+                                }
+                            lots.remove(lot);
+                            find = true;
+                        System.out.println("All bins of this lot are marked as AVAILABLE!");
+                        break;
                         }
                     }
 
-                    if (indexBin == -1) {
-                        System.out.println("The QR code you gave is invalid");
-                        break;
-
-                    } else {
-                        Bin binRecu = this.binController.getBins().get(indexBin);
-                        binRecu.setBinStateType(BinStateType.AVAILABLE);
-                        binRecu.setStartTime();
-                        System.out.println("The bin is marked as AVAILABLE!");
+                    if(find == false){
+                        System.out.println("The QR code you entred is invalid");
                     }
                 }
+
+                entreToContinue();
+                break;
+                        
+
+
+                    
+                
 
             default:
                 System.out.println("Sorry, an unknown error has occurred :(");
@@ -1088,4 +1235,89 @@ public class AppMenu {
 
         return userChoice;
     }
+
+
+
+ /**
+     * Method to get the strings of all bins in this lot according to the lot where the bin is located
+     * 
+     * @param bin the bin that we would find the location
+     * @return string to show the list
+     */
+public String findLotList(Bin bin){
+    
+    String list = "";
+
+    for(int i=0;i<lots.size();i++){
+        ArrayList<Bin> lot = new ArrayList<Bin>();
+        lot = lots.get(i);
+        boolean binInside = false;
+
+        for(int j=0;j<lot.size();j++){
+            
+            if(lot.get(j)== bin){
+                binInside = true;
+            }
+
+            
+            }
+            if(binInside){
+                for(int j =0; j<lot.size();j++){
+                    list = list + " | " + lot.get(j).getName();
+                }
+                
+        }
+        
+    
+      
+        
+    }
+    
+    return list;
 }
+
+/**
+     * Method to take a break before showing more messages
+     * 
+     * @param null
+     * @return null
+     */
+
+public void entreToContinue(){
+    System.out.println("enter anything to continue(ex: \"1\")");
+    scanner.next();
+    
+}
+/**
+     * Method the list of all lots we have
+     * 
+     * @param null
+     * @return null
+     */
+public void showLotList(){
+    
+    
+    String lotList = "";
+
+    for(int i=0;i< lots.size();i++){
+        ArrayList<Bin> Thelot = new ArrayList<Bin>();
+
+        lotList = lotList + "["+ i +"] : ";
+
+        Thelot = lots.get(i);
+        for(int j = 0;j< Thelot.size();j++){
+            lotList = lotList + " | " + Thelot.get(j).getName();
+            
+        }
+
+        lotList = lotList + "\n";
+    }
+
+    System.out.println(lotList);
+}
+
+}
+
+
+
+

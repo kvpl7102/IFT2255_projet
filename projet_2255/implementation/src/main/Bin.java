@@ -2,6 +2,7 @@ import java.util.Date;
 
 //class for bin/bacs.
 public class Bin {
+    //prologe: class for the generation and management of a single trash can
 
     private String codeQr;
     private String binName;

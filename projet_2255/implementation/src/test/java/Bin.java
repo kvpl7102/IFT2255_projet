@@ -1,5 +1,6 @@
 import java.util.Date;
 
+//class for bin/bacs.
 public class Bin {
 
     private String codeQr;
@@ -24,13 +25,6 @@ public class Bin {
 
     public void setStartTime() {
         this.timeStart = new Date();
-    }
-
-    /**
-     * @return BinType
-     */
-    public BinType getBinType() {
-        return this.binType;
     }
 
     /**

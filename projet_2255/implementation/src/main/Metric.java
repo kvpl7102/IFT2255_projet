@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Metric {
 
+    //prologe class to menage residents' personal metric.
+
     double AverageFillLvl = 0;
     BinController binsC;
     UserController usersC;

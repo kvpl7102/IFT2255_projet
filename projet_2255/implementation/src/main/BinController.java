@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 //controller for class bin
 public class BinController implements Controller {
+    //class to control all the bins in the system
 
     private ArrayList<Bin> bins = new ArrayList<Bin>();
 

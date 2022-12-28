@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 //class for consumers.
 public class Consumer extends User {
+    //prologe: class for an individual consummer and all possible actions
 
     private String code;
     private String capacity;

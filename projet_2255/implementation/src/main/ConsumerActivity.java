@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class ConsumerActivity {
+    //prologe: class for single activity from consummers
 
     private String activityName;
     private double overallRating;

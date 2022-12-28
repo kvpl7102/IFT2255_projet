@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 public class Resident extends User {
+
+    //prologe: class for an individual resident and all possible actions
+
     private ArrayList<Bin> residentBins = new ArrayList<>();
     private ArrayList<ConsumerActivity> notedActivities = new ArrayList<ConsumerActivity>();
 
