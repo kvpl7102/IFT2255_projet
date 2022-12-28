@@ -13,6 +13,7 @@ public class AppMenu {
     ArrayList<String> notifications = new ArrayList<>();
     ArrayList<String> feedback = new ArrayList<String>();
     MetricController metricController = new MetricController(userController, binController);
+    ArrayList<ArrayList<Bin>> lots= new ArrayList<ArrayList<Bin>>();
 
     User loggedUser;
     boolean exit = false;
@@ -63,9 +64,9 @@ public class AppMenu {
         userController.getResidents().add(resident1);
         userController.getUsers().put("res1", "123");
 
-        Bin bin1 = new Bin(BinType.ORDURE, "qr", "bin1", "null");
+        Bin bin1 = new Bin(BinType.ORDURE, "qr1", "bin1", "null");
         bin1.setFillLevel(45);
-        Bin bin2 = new Bin(BinType.RECYCLAGE, "qr", "bin2", "null");
+        Bin bin2 = new Bin(BinType.RECYCLAGE, "qr2", "bin2", "null");
         bin2.setFillLevel(30);
 
         this.binController.getBins().add(bin1);
@@ -124,6 +125,13 @@ public class AppMenu {
         this.userController.getConsumers().add(cons10);
         this.userController.getUsers().put("cons10", "123");
         // initial users
+
+        ArrayList<Bin> lot = new ArrayList<Bin>();
+        lot.add(bin2);
+        lots.add(lot);
+        lots.get(0).get(0).setBinStateType(BinStateType.TREATING);
+        lots.get(0).get(0).setStartTime();
+        
     }
 
     /**
@@ -415,16 +423,22 @@ public class AppMenu {
                     String time = days + " days, " + hours + " hours and " + mins + " minutes";
 
                     String state = "null";
+
+                    String ifT = ""; //message affiche when the bin is treating;
                     if (theBin.getBinStateType() == BinStateType.AVAILABLE) {
                         state = "AVAILABLE";
                     } else if (theBin.getBinStateType() == BinStateType.TRANSITING) {
                         state = "TRANSITING";
                     } else if (theBin.getBinStateType() == BinStateType.TREATING) {
                         state = "TREATING";
+                        ifT = " The list of bins in the lot it belongs to is " + findLotList(theBin);
+                        
                     }
 
+                    
+
                     System.out.println("Your bin is now " + state + " for " + time + " and the fill level is "
-                            + theBin.getFillLevel());
+                            + theBin.getFillLevel() + ifT) ;
                 }
 
                 break;
@@ -976,11 +990,14 @@ public class AppMenu {
                 System.out.println("\n==========CONFIRME TO RECEIVE BINS==========");
 
                 while (finished == false) {
+                    
                     System.out.println("Enter the QR code of the bin you received");
                     System.out.println("Enter 0 to quit");
                     String newQR = scanner.next();
 
-                    if (newQR == "0") {
+                    ArrayList<Bin> lot = new ArrayList<Bin>();
+
+                    if (newQR.equals("0")) {
                         finished = true;
                     }
 
@@ -992,10 +1009,13 @@ public class AppMenu {
 
                     int indexBin = -1;
 
+                    
+
                     for (int i = 0; i < qRcodes.size(); i++) {
-                        if (qRcodes.get(i) == newQR) {
-                            System.out.println(qRcodes.get(i));
-                            System.out.println(newQR);
+                        
+                        if (qRcodes.get(i).equals(newQR)) {
+                            
+                            
                             indexBin = i;
                             break;
                         }
@@ -1009,50 +1029,74 @@ public class AppMenu {
                         Bin binRecu = this.binController.getBins().get(indexBin);
                         binRecu.setBinStateType(BinStateType.TREATING);
                         binRecu.setStartTime();
+                        lot.add(binRecu);
                         System.out.println("The bin is marked as TREATING!");
                     }
-                }
+                     
 
-            case 7: // confirming to receive bins
-                boolean fin = false;
+                    this.lots.add(lot);
+
+                }
+                break;
+            
+
+            case 7: // confirming to finish processing a LOT
+                boolean end = false;
 
                 System.out.println("\n==========CONFIRME TO FINISH PROCESSING BINS==========");
 
-                while (fin == false) {
-                    System.out.println("Enter the QR code of the bin you finished");
+                while (end == false) {
+                    System.out.println("Enter a QR code of the bin in the lot that you finished");
                     System.out.println("Enter 0 to quit");
                     String newQR = scanner.next();
+                    boolean find = false;
 
-                    if (newQR == "0") {
-                        fin = true;
+                    if (newQR.equals("0")) {
+                        end = true;
+                        break;
                     }
+                    
 
-                    ArrayList<String> qRcodes = new ArrayList<String>();
 
-                    for (int i = 0; i < this.binController.getBins().size(); i++) {
-                        qRcodes.add(this.binController.getBins().get(i).getCodeQr());
-                    } // get arrayList of QRcodes according to index of ArrayList<bin>
+                    
+                    for(int i = 0;i<lots.size();i++){
+                        ArrayList<Bin> lot = lots.get(i);
+                        ArrayList<String> qRcodes = new ArrayList<String>();//list of QR codes for this lot
+                        for(int j = 0;j<lot.size();j++){
+                            
+                            qRcodes.add(lot.get(j).getCodeQr());// get arrayList of QRcodes according to index of ArrayList<bin>
+                        }
 
-                    int indexBin = -1;
-
-                    for (int i = 0; i < qRcodes.size(); i++) {
-                        if (qRcodes.get(i) == newQR) {
-                            indexBin = i;
-                            break;
+                        boolean binInside = false;
+                        for(int j = 0;j<lot.size();j++){
+                            if(newQR.equals(qRcodes.get(j))){
+                                binInside = true;
+                            }
+                        }
+                        
+                        if(binInside){
+                            for(int z=0;z<lot.size();z++){
+                                Bin myBin = lot.get(z);
+                                myBin.setBinStateType(BinStateType.AVAILABLE);
+                                myBin.setStartTime();
+                                }
+                            lots.remove(lot);
+                            find = true;
+                        System.out.println("All bins of this lot are marked as AVAILABLE!");
+                        break;
                         }
                     }
 
-                    if (indexBin == -1) {
-                        System.out.println("The QR code you gave is invalid");
-                        break;
-
-                    } else {
-                        Bin binRecu = this.binController.getBins().get(indexBin);
-                        binRecu.setBinStateType(BinStateType.AVAILABLE);
-                        binRecu.setStartTime();
-                        System.out.println("The bin is marked as AVAILABLE!");
+                    if(find == false){
+                        System.out.println("The QR code you entred is invalid");
                     }
                 }
+                break;
+                        
+
+
+                    
+                
 
             default:
                 System.out.println("Sorry, an unknown error has occurred :(");
@@ -1089,4 +1133,42 @@ public class AppMenu {
 
         return userChoice;
     }
+
+
+public String findLotList(Bin bin){
+    //ArrayList<Bin> lotTarget = new ArrayList<Bin>();
+    String list = "";
+
+    for(int i=0;i<lots.size();i++){
+        ArrayList<Bin> lot = new ArrayList<Bin>();
+        lot = lots.get(i);
+        boolean binInside = false;
+
+        for(int j=0;j<lot.size();j++){
+            
+            if(lot.get(j)== bin){
+                binInside = true;
+            }
+
+            
+            }
+            if(binInside){
+                for(int j =0; j<lot.size();j++){
+                    list = list + " | " + lot.get(j).getName();
+                }
+                
+        }
+        
+    
+      
+        
+    }
+    
+    return list;
 }
+
+}
+
+
+
+
